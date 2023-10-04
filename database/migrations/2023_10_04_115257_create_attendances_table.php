@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Course;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -11,15 +12,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('attendances', function (Blueprint $table) {
             $table->id();
-            $table->string('username');
-            $table->string('password');
-            $table->string('email')->unique();
-            $table->integer('level')->unsigned()->default(1);
-            $table->timestamp('email_verified_at')->nullable();
-            $table->rememberToken();
+            $table->string('title');
+            $table->dateTime('datetime');
+            $table->foreignIdFor(Course::class);
+            $table->boolean('is_filled')->default(false);
             $table->timestamps();
+
+            $table->foreign("course_id")->references("id")->on("courses")->onDelete("cascade");
         });
     }
 
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('attendances');
     }
 };
