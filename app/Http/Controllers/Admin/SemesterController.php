@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\SemesterResources;
 use App\Models\Semester;
-use Database\Seeders\SemesterSeeder;
 use Illuminate\Http\Request;
 
 class SemesterController extends Controller
