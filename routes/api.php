@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\ClaassController;
 use App\Http\Controllers\Admin\SemesterController;
+use App\Http\Controllers\Admin\TeacherController;
 use App\Http\Controllers\MajorController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -26,5 +27,6 @@ Route::prefix("admin")->group(function () {
         Route::delete('semester/{semester}', 'destroy');
     });
     Route::resource('claass', ClaassController::class)->except(["edit", "create"]);
+    Route::resource('teacher', TeacherController::class)->except(["edit", "create"]);
 });
 Route::get('allMajor', [MajorController::class, 'allMajor']);
