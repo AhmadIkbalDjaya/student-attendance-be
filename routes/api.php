@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\ClaassController;
+use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\SemesterController;
 use App\Http\Controllers\Admin\TeacherController;
 use App\Http\Controllers\MajorController;
@@ -30,5 +31,6 @@ Route::prefix("admin")->group(function () {
     Route::resource('claass', ClaassController::class)->except(["edit", "create"]);
     Route::resource('teacher', TeacherController::class)->except(["edit", "create"]);
     Route::resource('student', StudentController::class)->except(["edit", "create"]);
+    Route::resource('course', CourseController::class)->except(["edit", "create"]);
 });
 Route::get('allMajor', [MajorController::class, 'allMajor']);
