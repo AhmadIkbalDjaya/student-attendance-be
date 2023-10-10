@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\TeacherController;
 use App\Http\Controllers\MajorController;
 use App\Http\Controllers\StudentController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,3 +35,7 @@ Route::prefix("admin")->group(function () {
     Route::resource('course', CourseController::class)->except(["edit", "create"]);
 });
 Route::get('allMajor', [MajorController::class, 'allMajor']);
+
+Route::get('/foo', function () {
+    Artisan::call('storage:link');
+});
