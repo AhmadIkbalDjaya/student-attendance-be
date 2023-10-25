@@ -9,4 +9,8 @@ class AttendanceStatus extends Model
 {
     use HasFactory;
     protected $guarded = ["id"];
+    
+    public function student_attendances() {
+        return $this->hasMany(StudentAttendance::class);
+    }
 }

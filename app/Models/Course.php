@@ -27,7 +27,7 @@ class Course extends Model
 
     public function attendances()
     {
-        return $this->hasMany(Attendances::class);
+        return $this->hasMany(Attendance::class);
     }
 
     public function students() {

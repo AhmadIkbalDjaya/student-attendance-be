@@ -1,0 +1,178 @@
+[
+    {
+        "IPA": [
+            {
+                "10": [
+                    {
+                        "10 IPA 1": [
+                            {
+                                "id": "1",
+                                "course": "Bahasa Indonesia"
+                            },
+                            {
+                                "id": "2",
+                                "course": "Bahasa Inggris"
+                            }
+                        ]
+                    },
+                    {
+                        "10 IPA 2": [
+                            {
+                                "id": "31",
+                                "course": "Geografi"
+                            },
+                            {
+                                "id": "22",
+                                "course": "Prakarya"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "11": [
+                    {
+                        "11 IPA 1": [
+                            {
+                                "id": "14",
+                                "course": "Bahasa Indonesia"
+                            },
+                            {
+                                "id": "42",
+                                "course": "Bahasa Inggris"
+                            }
+                        ]
+                    },
+                    {
+                        "11 IPA 2": [
+                            {
+                                "id": "11",
+                                "course": "Geografi"
+                            },
+                            {
+                                "id": "72",
+                                "course": "Prakarya"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "12": [
+                    {
+                        "12 IPA 1": [
+                            {
+                                "id": "16",
+                                "course": "Bahasa Indonesia"
+                            },
+                            {
+                                "id": "72",
+                                "course": "Bahasa Inggris"
+                            }
+                        ]
+                    },
+                    {
+                        "12 IPA 2": [
+                            {
+                                "id": "41",
+                                "course": "Geografi"
+                            },
+                            {
+                                "id": "62",
+                                "course": "Prakarya"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "IPS": [
+            {
+                "10": [
+                    {
+                        "10 IPS 1": [
+                            {
+                                "id": "1",
+                                "course": "Bahasa Indonesia"
+                            },
+                            {
+                                "id": "2",
+                                "course": "Bahasa Inggris"
+                            }
+                        ]
+                    },
+                    {
+                        "10 IPS 2": [
+                            {
+                                "id": "31",
+                                "course": "Geografi"
+                            },
+                            {
+                                "id": "22",
+                                "course": "Prakarya"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "11": [
+                    {
+                        "11 IPS 1": [
+                            {
+                                "id": "14",
+                                "course": "Bahasa Indonesia"
+                            },
+                            {
+                                "id": "42",
+                                "course": "Bahasa Inggris"
+                            }
+                        ]
+                    },
+                    {
+                        "11 IPS 2": [
+                            {
+                                "id": "11",
+                                "course": "Geografi"
+                            },
+                            {
+                                "id": "72",
+                                "course": "Prakarya"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "12": [
+                    {
+                        "12 IPS 1": [
+                            {
+                                "id": "16",
+                                "course": "Bahasa Indonesia"
+                            },
+                            {
+                                "id": "72",
+                                "course": "Bahasa Inggris"
+                            }
+                        ]
+                    },
+                    {
+                        "12 IPS 2": [
+                            {
+                                "id": "41",
+                                "course": "Geografi"
+                            },
+                            {
+                                "id": "62",
+                                "course": "Prakarya"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]
