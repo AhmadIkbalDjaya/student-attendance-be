@@ -8,6 +8,7 @@ use App\Http\Controllers\AuthenticateController;
 use App\Http\Controllers\MajorController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\Teacher\AttendanceController;
+use App\Http\Controllers\Teacher\RecapController;
 use App\Http\Middleware\Authenticate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
@@ -51,10 +52,13 @@ Route::controller(AuthenticateController::class)->group(function () {
 
 Route::prefix("teacher")->group(function () {
     Route::controller(AttendanceController::class)->group(function () {
-        Route::get('/attendance/list/{course}', 'attendanceList');
-        Route::post('/attendance/create/{course}', 'createAttendance');
-        Route::get('/attendance/{attendance}', 'showAttendance');
-        Route::post('/attendance/update/{attendance}', 'updateAttendance');
-        Route::delete('/attendance/{attendance}', 'destroyAttendance');
+        Route::get('attendance/list/{course}', 'attendanceList');
+        Route::post('attendance/create/{course}', 'createAttendance');
+        Route::get('attendance/{attendance}', 'showAttendance');
+        Route::post('attendance/update/{attendance}', 'updateAttendance');
+        Route::delete('attendance/{attendance}', 'destroyAttendance');
+    });
+    Route::controller(RecapController::class)->group(function () {
+        Route::get('recap/{course}', 'recap');
     });
 });
