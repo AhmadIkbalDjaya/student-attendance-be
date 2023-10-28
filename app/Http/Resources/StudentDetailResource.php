@@ -21,7 +21,7 @@ class StudentDetailResource extends JsonResource
             "gender" => $this->gender,
             "gender" => $this->gender,
             "claass_id" => $this->claass_id,
-            "claass_name" => $this->claass_name,
+            "claass_name" => $this->claass->name,
         ];
     }
 }

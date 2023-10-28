@@ -18,7 +18,7 @@ class AuthenticateController extends Controller
         if (Auth::attempt($validated)) {
             $user = Auth::user();
             $data = [
-                "succes" => true,
+                "success" => true,
                 "data" => [
                     "token" => $user->createToken('token')->plainTextToken,
                     "user" => [],
@@ -29,8 +29,10 @@ class AuthenticateController extends Controller
                 $data['data']['user'] = [
                     "username" => $user->username,
                 ];
+                $data['data']['role'] = "admin";
             } else {
                 $teacher = $user->teacher;
+                $data['data']['role'] = "teacher";
                 $data['data']['user'] = [
                     "username" => $user->username,
                     "name" => $teacher->name,
