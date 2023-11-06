@@ -69,7 +69,7 @@ class TeacherController extends Controller
         $validated = $request->validate([
             "username" => "required|string|unique:users,username,$user->id",
             "password" => "nullable|min:8|string",
-            "email" => "required|email|unique:users,email,$user->email",
+            "email" => "required|email|unique:users,email,$user->id",
             "name" => "required|string",
             "phone" => "nullable",
             "gender" => "required|in:male,female",
