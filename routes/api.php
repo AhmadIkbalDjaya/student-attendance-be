@@ -26,13 +26,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::prefix("admin")->group(function () {
-    Route::controller(SemesterController::class)->group(function () {
-        Route::get('semester', 'index');
-        Route::get('semester/{semester}', 'show');
-        Route::post('semester', 'store');
-        Route::get('semester/{semester}/setActive', 'setActive');
-        Route::delete('semester/{semester}', 'destroy');
-    });
+    Route::resource('semester', SemesterController::class);
+    Route::get('semester/{semester}/setActive', [SemesterController::class, 'setActive']);
     Route::resource('claass', ClaassController::class)->except(["edit", "create"]);
     Route::resource('teacher', TeacherController::class)->except(["edit", "create"]);
     Route::resource('student', StudentController::class)->except(["edit", "create"]);

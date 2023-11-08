@@ -7,6 +7,8 @@ use App\Http\Resources\SemesterResources;
 use App\Models\Semester;
 use Illuminate\Http\Request;
 
+use function PHPUnit\Framework\returnSelf;
+
 class SemesterController extends Controller
 {
     public function index()
@@ -47,7 +49,38 @@ class SemesterController extends Controller
             ], 200);
         } catch (\Throwable $th) {
             return response()->json([
-                "message" => $th->getMessage(),
+                "message" => "Gagal Menambahkan Semester",
+                "error" => $th->getMessage(),
+            ], 500);
+        }
+    }
+
+    public function update(Semester $semester, Request $request)
+    {
+        $validated = $request->validate([
+            "start_year" => "required|numeric|max_digits:4|min_digits:4",
+            "odd_even" => "required|boolean",
+        ]);
+        $validated["end_year"] = $validated["start_year"] + 1;
+        $check = Semester::where("start_year", $validated["start_year"])
+            ->where("end_year", $validated["end_year"])
+            ->where("odd_even", $validated['odd_even'])
+            ->where('id', '!=', $semester->id)
+            ->count();
+        if ($check > 0) {
+            return response()->json([
+                "message" => "Tahun ajaran sudah ada sebelumnya",
+            ], 400);
+        }
+        try {
+            $semester->update($validated);
+            return response()->json([
+                "data" => new SemesterResources($semester)
+            ], 200);
+        } catch (\Throwable $th) {
+            return response()->json([
+                "message" => "Semester gagal diedit",
+                "error" => $th->getMessage(),
             ], 500);
         }
     }
