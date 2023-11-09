@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\CourseDetailResource;
 use App\Http\Resources\CourseResource;
 use App\Models\Course;
 use Illuminate\Http\Request;
@@ -21,7 +22,7 @@ class CourseController extends Controller
     public function show(Course $course)
     {
         return response()->json([
-            "data" => new CourseResource($course),
+            "data" => new CourseDetailResource($course),
         ], 200);
     }
 
@@ -36,8 +37,8 @@ class CourseController extends Controller
         try {
             $course = Course::create($validated);
             return response()->json([
-                "data" => new CourseResource($course),
-            ], 201);
+                "data" => new CourseDetailResource($course),
+            ], 200);
         } catch (\Throwable $th) {
             return response()->json([
                 "message" => $th->getMessage(),
@@ -56,8 +57,8 @@ class CourseController extends Controller
         try {
             $course->update($validated);
             return response()->json([
-                "data" => new CourseResource($course),
-            ], 201);
+                "data" => new CourseDetailResource($course),
+            ], 200);
         } catch (\Throwable $th) {
             return response()->json([
                 "message" => $th->getMessage(),
