@@ -14,7 +14,21 @@ class TeacherCourseResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        $levels = ["10", "11", "12"];
+        // $levels = ["10", "11", "12"];
+        $levels = [
+            [
+                "level" => "10",
+                "major_id" => $this->id,
+            ],
+            [
+                "level" => "11",
+                "major_id" => $this->id,
+            ],
+            [
+                "level" => "12",
+                "major_id" => $this->id,
+            ],
+        ];
         return [
             "major" => $this->name,
             "levels" => LevelResource::collection($levels),
