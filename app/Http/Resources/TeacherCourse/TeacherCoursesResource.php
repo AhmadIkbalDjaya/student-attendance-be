@@ -17,6 +17,9 @@ class TeacherCoursesResource extends JsonResource
         return [
             "id" => $this->id,
             "course_name"  => $this->name,
+            "claass_id" => $this->claass_id,
+            "teacher_id" => $this->teacher_id,
+            "semester_id" => $this->semester_id,
         ];
     }
 }

@@ -17,21 +17,16 @@ class LevelResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        // dd($this["major_id"]);
-        $activeSemesterId = Semester::where('is_active', true)->pluck('id')->first;
-        // dd($activeSemesterId);
-        $claasses = Claass::whereHas("courses", function ($query) {
-            $query->where("teacher_id", Auth::user()->teacher->id);
-        })->with(['courses' => function ($query) {
+        $activeSemesterId = Semester::where('is_active', true)->pluck('id')->first();
+        $claasses = Claass::whereHas("courses", function ($query) use ($activeSemesterId) {
             $query->where("teacher_id", Auth::user()->teacher->id)
-                // ->where('semester_id', "2")
-            ;
+                ->where('semester_id', $activeSemesterId);
+        })->with(['courses' => function ($query) use ($activeSemesterId) {
+            $query->where("teacher_id", Auth::user()->teacher->id)
+                ->where('semester_id', $activeSemesterId);
         }])->where('major_id', $this["major_id"])
             ->where('level', $this['level'])
             ->get();
-        // $claasses = Claass::where('major_id', $this["major_id"])
-        // ->where('level', $this['level'])->get();
-        // dd($claasses);
         return [
             // "level" => $this->resource,
             "level" => $this["level"],
