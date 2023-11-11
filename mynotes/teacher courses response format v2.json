@@ -1,0 +1,38 @@
+[
+    {
+        "major": "IPA",
+        "levels": [
+            {
+                "level": "10",
+                "claasses": [
+                    {
+                        "claass_name": "10 IPA 1",
+                        "courses": [
+                            {
+                                "id": "1",
+                                "course_name": "Bahasa Indonesia"
+                            },
+                            {
+                                "id": "2",
+                                "course_name": "Bahasa Inggris"
+                            }
+                        ]
+                    },
+                    {
+                        "claass_name": "10 IPA 2",
+                        "courses": [
+                            {
+                                "id": "11",
+                                "course_name": "Bahasa India"
+                            },
+                            {
+                                "id": "22",
+                                "course_name": "Bahasa Irlandia"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]
