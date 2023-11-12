@@ -65,37 +65,6 @@ class AuthenticateController extends Controller
         }
     }
 
-    // public function teacherCourses()
-    // {
-    //     $majors = Major::with('claasses.courses')->get();
-
-    //     $formattedData = [];
-
-    //     foreach ($majors as $major) {
-    //         $majorData = [];
-
-    //         foreach ($major->claasses->sortBy('level') as $class) {
-    //             $classData = [];
-
-    //             foreach ($class->courses as $course) {
-    //                 if ($course->teacher_id == Auth::user()->teacher->id) {
-    //                     $classData[$class->name][] = [
-    //                         'id' => $course->id,
-    //                         'course' => $course->name,
-    //                     ];
-    //                 }
-    //             }
-    //             if ($classData != []) {
-    //                 $majorData[$class->level][] = $classData;
-    //             }
-    //         }
-
-    //         $formattedData[$major->name] = $majorData;
-    //     }
-
-    //     return response()->json($formattedData, 200);
-    // }
-
     public function teacherCourses()
     {
         return response()->json([

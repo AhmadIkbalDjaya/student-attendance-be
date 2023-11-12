@@ -14,7 +14,6 @@ class TeacherCourseResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        // $levels = ["10", "11", "12"];
         $levels = [
             [
                 "level" => "10",

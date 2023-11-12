@@ -27,6 +27,7 @@ class AttendanceController extends Controller
         return response()->json([
             "data" => [
                 "course" => [
+                    "id" => $course->id,
                     "name" => $course->name,
                     "claass" => $course->claass->name,
                     "semester" => "(" . $semester . ") " . $course->semester->start_year . " / "  . $course->semester->end_year,
