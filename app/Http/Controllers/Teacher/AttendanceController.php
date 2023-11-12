@@ -23,12 +23,13 @@ class AttendanceController extends Controller
                 "is_filled" => $attendance->is_filled,
             ];
         }
+        $semester = $course->semester->odd_even ? "Ganjil" : "Genap";
         return response()->json([
             "data" => [
                 "course" => [
                     "name" => $course->name,
                     "claass" => $course->claass->name,
-                    "semester" => "(" . $course->semester->odd_even ? "Ganjil" : "Genap" . ") " . $course->semester->start_year . "/"  . $course->semester->end_year
+                    "semester" => "(" . $semester . ") " . $course->semester->start_year . " / "  . $course->semester->end_year,
                 ],
                 "attendances" => $attendances,
             ]
