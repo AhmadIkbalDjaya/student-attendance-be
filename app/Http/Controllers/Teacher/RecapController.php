@@ -44,6 +44,7 @@ class RecapController extends Controller
 
         $data = [
             "course" => [
+                "id" => $course->id,
                 "claass" => $course->claass->name,
                 "course_name" => $course->name,
                 "semester" => "(" . $course->semester->odd_even ? "Ganjil" : "Genap" . ") " . $course->semester->start_year . "/"  . $course->semester->end_year,
