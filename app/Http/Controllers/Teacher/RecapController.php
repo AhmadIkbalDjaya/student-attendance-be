@@ -42,12 +42,13 @@ class RecapController extends Controller
             ];
         }
 
+        $semester = $course->semester->odd_even ? "Ganjil" : "Genap";
         $data = [
             "course" => [
                 "id" => $course->id,
                 "claass" => $course->claass->name,
                 "course_name" => $course->name,
-                "semester" => "(" . $course->semester->odd_even ? "Ganjil" : "Genap" . ") " . $course->semester->start_year . "/"  . $course->semester->end_year,
+                "semester" => "(" . $semester . ") " . $course->semester->start_year . " / "  . $course->semester->end_year,
                 "attendance_count" => $course->attendances->count(),
             ],
             "students_recap" => $response,
