@@ -8,6 +8,7 @@ use App\Models\Attendance;
 use App\Models\Course;
 use App\Models\Student;
 use App\Models\StudentAttendance;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -77,7 +78,9 @@ class AttendanceController extends Controller
                 "title" => $attendance->title,
                 "claass" => $attendance->course->claass->name,
                 "course" => $attendance->course->name,
-                "datetime" => $attendance->datetime,
+                // "datetime" => $attendance->datetime,
+                // "datetime" => Carbon::parse($attendance->datetime)->format("d F Y - H:i"),
+                "datetime" => Carbon::parse($attendance->datetime)->isoFormat("DD MMMM YYYY - HH:mm"),
                 "student_count" => $attendance->course->claass->students->count(),
             ],
             "student_attendances" => StudentAttendanceResource::collection($attendance->students),
