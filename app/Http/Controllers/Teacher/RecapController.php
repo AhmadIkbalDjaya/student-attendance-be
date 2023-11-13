@@ -52,6 +52,6 @@ class RecapController extends Controller
             "students_recap" => $response,
 
         ];
-        return response()->json($data, 200);
+        return response()->json(["data" => $data], 200);
     }
 }
