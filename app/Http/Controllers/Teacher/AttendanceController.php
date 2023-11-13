@@ -82,7 +82,7 @@ class AttendanceController extends Controller
             ],
             "student_attendances" => StudentAttendanceResource::collection($attendance->students),
         ];
-        return response()->json($data, 200);
+        return response()->json(["data" => $data], 200);
     }
 
     public function updateAttendance(Request $request, Attendance $attendance)
