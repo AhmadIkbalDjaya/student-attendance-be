@@ -91,7 +91,7 @@ class AttendanceController extends Controller
         $validated = $request->validate([
             "ids" => "required|array",
             "ids.*" => "exists:student_attendances,id",
-            "status_ids" => "required|array",
+            "status_ids" => "required|array|size:" . count($request->ids),
             "status_ids.*" => "exists:attendance_statuses,id",
         ]);
         try {
