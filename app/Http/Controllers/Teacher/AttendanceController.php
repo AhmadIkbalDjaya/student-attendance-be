@@ -78,8 +78,6 @@ class AttendanceController extends Controller
                 "title" => $attendance->title,
                 "claass" => $attendance->course->claass->name,
                 "course" => $attendance->course->name,
-                // "datetime" => $attendance->datetime,
-                // "datetime" => Carbon::parse($attendance->datetime)->format("d F Y - H:i"),
                 "datetime" => Carbon::parse($attendance->datetime)->isoFormat("DD MMMM YYYY - HH:mm"),
                 "student_count" => $attendance->course->claass->students->count(),
             ],
@@ -92,7 +90,9 @@ class AttendanceController extends Controller
     {
         $validated = $request->validate([
             "ids" => "required|array",
+            "ids.*" => "exists:student_attendances,id",
             "status_ids" => "required|array",
+            "status_ids.*" => "exists:attendance_statuses,id",
         ]);
         try {
             foreach ($validated['ids'] as $key => $student_attendance) {
