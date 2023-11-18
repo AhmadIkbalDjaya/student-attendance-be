@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\TeacherCourse\TeacherCourseResource;
-use App\Models\Major;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -28,14 +26,18 @@ class AuthenticateController extends Controller
             ];
             if ($user->level == 0) {
                 $data['data']['user'] = [
+                    "id" => $user->id,
                     "username" => $user->username,
+                    "email" => $user->email,
                 ];
                 $data['data']['role'] = "admin";
             } else {
                 $teacher = $user->teacher;
                 $data['data']['role'] = "teacher";
                 $data['data']['user'] = [
+                    "id" => $user->id,
                     "username" => $user->username,
+                    "email" => $user->email,
                     "name" => $teacher->name,
                     "phone" => $teacher->phone ? $teacher->phone : "",
                     "gender" => $teacher->gender ? $teacher->gender : "",
@@ -65,10 +67,4 @@ class AuthenticateController extends Controller
         }
     }
 
-    public function teacherCourses()
-    {
-        return response()->json([
-            "data" => TeacherCourseResource::collection(Major::all()),
-        ], 200);
-    }
 }

@@ -9,6 +9,7 @@ use App\Http\Controllers\MajorController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\Teacher\AttendanceController;
 use App\Http\Controllers\Teacher\RecapController;
+use App\Http\Controllers\Teacher\TeacherProfilController;
 use App\Http\Middleware\Authenticate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
@@ -42,10 +43,16 @@ Route::get('/foo', function () {
 Route::controller(AuthenticateController::class)->group(function () {
     Route::post('login', 'login');
     Route::get('logout', 'logout')->middleware(['auth:sanctum']);
-    Route::get('teacherCourses', 'teacherCourses')->middleware(['auth:sanctum']);
 });
 
 Route::prefix("teacher")->group(function () {
+    Route::middleware(['auth:sanctum'])->group(function () {
+        Route::controller(TeacherProfilController::class)->group(function () {
+            Route::get('teacherCourses', 'teacherCourses');
+            Route::post('updateProfil', 'updateProfil');
+            Route::post('changePass', 'changePass');
+        });
+    });
     Route::controller(AttendanceController::class)->group(function () {
         Route::get('attendance/list/{course}', 'attendanceList');
         Route::post('attendance/create/{course}', 'createAttendance');
