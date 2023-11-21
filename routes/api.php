@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\ClaassController;
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\SemesterController;
@@ -27,6 +28,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::prefix("admin")->group(function () {
+    Route::get('home', [AdminController::class, 'home']);
     Route::resource('semester', SemesterController::class);
     Route::get('semester/{semester}/setActive', [SemesterController::class, 'setActive']);
     Route::resource('claass', ClaassController::class)->except(["edit", "create"]);
