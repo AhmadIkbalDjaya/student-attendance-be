@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\AdminRecapController;
 use App\Http\Controllers\Admin\ClaassController;
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\SemesterController;
@@ -35,6 +36,9 @@ Route::prefix("admin")->group(function () {
     Route::resource('teacher', TeacherController::class)->except(["edit", "create"]);
     Route::resource('student', StudentController::class)->except(["edit", "create"]);
     Route::resource('course', CourseController::class)->except(["edit", "create"]);
+    Route::controller(AdminRecapController::class)->group(function () {
+        Route::get('/recap', 'index');
+    });
 });
 Route::get('allMajor', [MajorController::class, 'allMajor']);
 
@@ -62,7 +66,7 @@ Route::prefix("teacher")->group(function () {
         Route::post('attendance/update/{attendance}', 'updateAttendance');
         Route::delete('attendance/{attendance}', 'destroyAttendance');
     });
-    Route::controller(RecapController::class)->group(function () {
-        Route::get('recap/{course}', 'recap');
-    });
+});
+Route::controller(RecapController::class)->group(function () {
+    Route::get('recap/{course}', 'recap');
 });
