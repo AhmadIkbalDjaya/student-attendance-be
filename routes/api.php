@@ -11,6 +11,7 @@ use App\Http\Controllers\MajorController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\Teacher\AttendanceController;
 use App\Http\Controllers\Teacher\RecapController;
+use App\Http\Controllers\Teacher\TeacherHomeController;
 use App\Http\Controllers\Teacher\TeacherProfilController;
 use App\Http\Middleware\Authenticate;
 use Illuminate\Http\Request;
@@ -52,6 +53,7 @@ Route::controller(AuthenticateController::class)->group(function () {
 });
 
 Route::prefix("teacher")->group(function () {
+    Route::get("home", [TeacherHomeController::class, "index"])->middleware(['auth:sanctum']);
     Route::middleware(['auth:sanctum'])->group(function () {
         Route::controller(TeacherProfilController::class)->group(function () {
             Route::get('teacherCourses', 'teacherCourses');
