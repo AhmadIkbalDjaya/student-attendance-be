@@ -95,11 +95,16 @@ class AttendanceController extends Controller
             "status_ids.*" => "exists:attendance_statuses,id",
         ]);
         try {
-            foreach ($validated['ids'] as $key => $student_attendance) {
-                StudentAttendance::where('id', $student_attendance)->update([
-                    "status_id" => $validated['status_ids'][$key]
+            DB::transaction(function () use ($attendance, $validated) {
+                foreach ($validated['ids'] as $key => $student_attendance) {
+                    StudentAttendance::where('id', $student_attendance)->update([
+                        "status_id" => $validated['status_ids'][$key]
+                    ]);
+                }
+                $attendance->update([
+                    "is_filled" => 1,
                 ]);
-            }
+            });
             return response()->json([
                 "message" => "Kehadiran Berhasil Disimpan",
             ], 200);
