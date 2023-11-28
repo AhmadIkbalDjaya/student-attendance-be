@@ -13,7 +13,7 @@ class AttendanceStatusSeeder extends Seeder
      */
     public function run(): void
     {
-        $statuses = ["Hadir", "Izin", "Sakit", "Alpa"];
+        $statuses = ["Hadir", "Izin", "Sakit", "Alpa", "Kosong"];
         foreach ($statuses as $status) {
             AttendanceStatus::create([
                 "name" => $status,

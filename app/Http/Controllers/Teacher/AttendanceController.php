@@ -54,7 +54,7 @@ class AttendanceController extends Controller
                     StudentAttendance::create([
                         "attendance_id" => $attendance->id,
                         "student_id" => $student,
-                        "status_id" => 4,
+                        "status_id" => 5,
                     ]);
                 }
             });
