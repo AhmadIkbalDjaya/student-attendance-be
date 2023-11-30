@@ -36,7 +36,7 @@ Route::prefix("admin")->group(function () {
     Route::resource('claass', ClaassController::class)->except(["edit", "create"]);
     Route::resource('teacher', TeacherController::class)->except(["edit", "create"]);
     Route::resource('student', StudentController::class)->except(["edit", "create"]);
-    Route::get('studentByClaass/{claass}', [StudentController::class,'studentByClaass']);
+    Route::get('studentByClaass/{claass}', [StudentController::class, 'studentByClaass']);
     Route::resource('course', CourseController::class)->except(["edit", "create"]);
     Route::controller(AdminRecapController::class)->group(function () {
         Route::get('/recap', 'index');
@@ -65,6 +65,7 @@ Route::prefix("teacher")->group(function () {
     Route::controller(AttendanceController::class)->group(function () {
         Route::get('attendance/list/{course}', 'attendanceList');
         Route::post('attendance/create/{course}', 'createAttendance');
+        Route::post('attendance/edit/{attendance}', 'editAttendance');
         Route::get('attendance/{attendance}', 'showAttendance');
         Route::post('attendance/update/{attendance}', 'updateAttendance');
         Route::delete('attendance/{attendance}', 'destroyAttendance');

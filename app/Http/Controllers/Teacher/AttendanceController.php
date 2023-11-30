@@ -70,6 +70,25 @@ class AttendanceController extends Controller
         }
     }
 
+    public function editAttendance(Attendance $attendance, Request $request)
+    {
+        $validated = $request->validate([
+            "title" => "required|string",
+            "datetime" => "required|date",
+        ]);
+        try {
+            $attendance->update($validated);
+            return response()->json([
+                "data" => $attendance,
+            ], 200);
+        } catch (\Throwable $th) {
+            return response()->json([
+                "message" => "Kehadiran gagal di edit",
+                "error" => $th->getMessage(),
+            ], 500);
+        }
+    }
+
     public function showAttendance(Attendance $attendance)
     {
         $data = [
