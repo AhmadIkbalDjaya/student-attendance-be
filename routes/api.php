@@ -36,6 +36,7 @@ Route::prefix("admin")->group(function () {
     Route::resource('claass', ClaassController::class)->except(["edit", "create"]);
     Route::resource('teacher', TeacherController::class)->except(["edit", "create"]);
     Route::resource('student', StudentController::class)->except(["edit", "create"]);
+    Route::get('studentByClaass/{claass}', [StudentController::class,'studentByClaass']);
     Route::resource('course', CourseController::class)->except(["edit", "create"]);
     Route::controller(AdminRecapController::class)->group(function () {
         Route::get('/recap', 'index');

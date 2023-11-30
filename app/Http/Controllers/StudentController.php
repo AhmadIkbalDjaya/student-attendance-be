@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\StudentDetailResource;
 use App\Http\Resources\StudentResource;
+use App\Models\Claass;
 use App\Models\Student;
 use Illuminate\Http\Request;
 
@@ -12,6 +13,14 @@ class StudentController extends Controller
     public function index()
     {
         $students = Student::latest()->get();
+        return response()->json([
+            "data" => StudentResource::collection($students),
+        ], 200);
+    }
+
+    public function studentByClaass(Claass $claass)
+    {
+        $students = Student::where("claass_id", $claass->id)->latest()->get();
         return response()->json([
             "data" => StudentResource::collection($students),
         ], 200);
@@ -64,7 +73,8 @@ class StudentController extends Controller
         }
     }
 
-    public function destroy(Student $student) {
+    public function destroy(Student $student)
+    {
         try {
             $student->delete();
             return response()->json([
