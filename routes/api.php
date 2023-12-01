@@ -11,6 +11,7 @@ use App\Http\Controllers\MajorController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\Teacher\AttendanceController;
 use App\Http\Controllers\Teacher\RecapController;
+use App\Http\Controllers\Teacher\StudentAttendanceController;
 use App\Http\Controllers\Teacher\TeacherHomeController;
 use App\Http\Controllers\Teacher\TeacherProfilController;
 use App\Http\Middleware\Authenticate;
@@ -63,12 +64,15 @@ Route::prefix("teacher")->group(function () {
         });
     });
     Route::controller(AttendanceController::class)->group(function () {
-        Route::get('attendance/list/{course}', 'attendanceList');
-        Route::post('attendance/create/{course}', 'createAttendance');
-        Route::post('attendance/edit/{attendance}', 'editAttendance');
-        Route::get('attendance/{attendance}', 'showAttendance');
-        Route::post('attendance/update/{attendance}', 'updateAttendance');
-        Route::delete('attendance/{attendance}', 'destroyAttendance');
+        Route::get('attendance/course/{course}', 'courseAttendances');
+        Route::get('attendance/{attendance}', 'show');
+        Route::post('attendance', 'store');
+        Route::put('attendance/{attendance}', 'update');
+        Route::delete('attendance/{attendance}', 'destroy');
+    });
+    Route::controller(StudentAttendanceController::class)->group(function () {
+        Route::get('studentAttendance/{attendance}', 'show');
+        Route::put('studentAttendance/{attendance}', 'update');
     });
 });
 Route::controller(RecapController::class)->group(function () {
