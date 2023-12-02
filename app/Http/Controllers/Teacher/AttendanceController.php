@@ -34,9 +34,7 @@ class AttendanceController extends Controller
     public function show(Attendance $attendance)
     {
         return response()->json([
-            "data" => [
-                "attendance" => new AttendanceResource($attendance),
-            ],
+            "data" => new AttendanceResource($attendance),,
         ]);
     }
 
