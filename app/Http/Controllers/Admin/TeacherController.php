@@ -111,4 +111,20 @@ class TeacherController extends Controller
             ], 500);
         }
     }
+
+    public function setPass(Request $request, Teacher $teacher)
+    {
+        $request->validate([
+            "password" => "required|min:8",
+        ]);
+        try {
+            $teacher->user->update(["password" => Hash::make($request->password)]);
+            return response()->json(["message" => "Password Berhasil Di Ubah"], 200);
+        } catch (\Throwable $th) {
+            return response()->json([
+                "message" => "Password Guru Berhasil diUbah",
+                "error" => $th->getMessage(),
+            ], 500);
+        }
+    }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AboutUsController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AdminRecapController;
 use App\Http\Controllers\Admin\ClaassController;
@@ -36,12 +37,12 @@ Route::prefix("admin")->group(function () {
     Route::get('semester/{semester}/setActive', [SemesterController::class, 'setActive']);
     Route::resource('claass', ClaassController::class)->except(["edit", "create"]);
     Route::resource('teacher', TeacherController::class)->except(["edit", "create"]);
+    Route::post('teacher/setPass/{teacher}', [TeacherController::class, 'setPass']);
     Route::resource('student', StudentController::class)->except(["edit", "create"]);
     Route::get('studentByClaass/{claass}', [StudentController::class, 'studentByClaass']);
     Route::resource('course', CourseController::class)->except(["edit", "create"]);
-    Route::controller(AdminRecapController::class)->group(function () {
-        Route::get('/recap', 'index');
-    });
+    Route::get('recap', [AdminRecapController::class, 'index']);
+    Route::resource('aboutUs', AboutUsController::class)->except(['edit','create']);
 });
 Route::get('allMajor', [MajorController::class, 'allMajor']);
 
@@ -52,6 +53,7 @@ Route::get('/foo', function () {
 Route::controller(AuthenticateController::class)->group(function () {
     Route::post('login', 'login');
     Route::get('logout', 'logout')->middleware(['auth:sanctum']);
+    Route::post('user/changePass', 'changePass')->middleware(['auth:sanctummake']);
 });
 
 Route::prefix("teacher")->group(function () {
@@ -60,7 +62,6 @@ Route::prefix("teacher")->group(function () {
         Route::controller(TeacherProfilController::class)->group(function () {
             Route::get('teacherCourses', 'teacherCourses');
             Route::post('updateProfil', 'updateProfil');
-            Route::post('changePass', 'changePass');
         });
     });
     Route::controller(AttendanceController::class)->group(function () {

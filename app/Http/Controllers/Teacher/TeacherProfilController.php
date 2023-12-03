@@ -55,20 +55,4 @@ class TeacherProfilController extends Controller
         }
     }
 
-    public function changePass(Request $request)
-    {
-        $validated = $request->validate([
-            "old_password" => "required|string",
-            "new_password" => "required|min:8|confirmed",
-        ]);
-        if (Hash::check($validated["old_password"], auth()->user()->password) == false) {
-            return response()->json(["message" => "Password Lama Salah"], 400);
-        }
-        try {
-            User::find(auth()->user()->id)->update(["password" => Hash::make($validated["new_password"])]);
-            return response()->json(["message" => "Password Berhasil diubah"], 200);
-        } catch (\Throwable $th) {
-            return response()->json(["message" => "Password Gagal Diubah", "error" => $th->getMessage()], 500);
-        }
-    }
 }

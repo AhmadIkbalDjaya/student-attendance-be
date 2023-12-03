@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\ValidationException;
 
 class AuthenticateController extends Controller
 {
@@ -67,4 +70,22 @@ class AuthenticateController extends Controller
         }
     }
 
+    public function changePass(Request $request)
+    {
+        $validated = $request->validate([
+            "old_password" => "required|string",
+            "new_password" => "required|min:8|confirmed",
+        ]);
+        if (!Hash::check($validated["old_password"], auth()->user()->password)) {
+            throw ValidationException::withMessages([
+                "old_password" => "Password Lama Salah",
+            ]);
+        }
+        try {
+            User::find(auth()->user()->id)->update(["password" => Hash::make($validated["new_password"])]);
+            return response()->json(["message" => "Password Berhasil diubah"], 200);
+        } catch (\Throwable $th) {
+            return response()->json(["message" => "Password Gagal Diubah", "error" => $th->getMessage()], 500);
+        }
+    }
 }
