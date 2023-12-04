@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\AboutUsResource;
 use App\Models\AboutUs;
 use Illuminate\Http\Request;
 
@@ -9,7 +10,9 @@ class AboutUsController extends Controller
 {
     public function index()
     {
-        return response()->json(["data" => AboutUs::all()]);
+        return response()->json([
+            "data" => AboutUsResource::collection(AboutUs::latest()->get()),
+        ], 200);
     }
 
     public function store(Request $request)
@@ -23,7 +26,7 @@ class AboutUsController extends Controller
         try {
             $aboutUs = AboutUs::create($validated);
             return response()->json([
-                "data" => $aboutUs,
+                "data" => new AboutUsResource($aboutUs),
             ], 200);
         } catch (\Throwable $th) {
             return response()->json([
@@ -36,7 +39,7 @@ class AboutUsController extends Controller
     public function show(AboutUs $aboutUs)
     {
         return response()->json([
-            "data" => $aboutUs
+            "data" => new AboutUsResource($aboutUs),
         ]);
     }
 
@@ -51,7 +54,7 @@ class AboutUsController extends Controller
         try {
             $aboutUs->update($validated);
             return response()->json([
-                "data" => $aboutUs,
+                "data" => new AboutUsResource($aboutUs),
             ], 200);
         } catch (\Throwable $th) {
             return response()->json([

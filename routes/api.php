@@ -42,7 +42,7 @@ Route::prefix("admin")->group(function () {
     Route::get('studentByClaass/{claass}', [StudentController::class, 'studentByClaass']);
     Route::resource('course', CourseController::class)->except(["edit", "create"]);
     Route::get('recap', [AdminRecapController::class, 'index']);
-    Route::resource('aboutUs', AboutUsController::class)->except(['edit','create']);
+    Route::resource('aboutUs', AboutUsController::class)->except(['edit','create'])->parameters(["aboutUs" => "aboutUs"]);
 });
 Route::get('allMajor', [MajorController::class, 'allMajor']);
 
