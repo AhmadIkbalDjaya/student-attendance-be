@@ -53,7 +53,7 @@ Route::get('/foo', function () {
 Route::controller(AuthenticateController::class)->group(function () {
     Route::post('login', 'login');
     Route::get('logout', 'logout')->middleware(['auth:sanctum']);
-    Route::post('user/changePass', 'changePass')->middleware(['auth:sanctummake']);
+    Route::post('user/changePass', 'changePass')->middleware(['auth:sanctum']);
 });
 
 Route::prefix("teacher")->group(function () {
