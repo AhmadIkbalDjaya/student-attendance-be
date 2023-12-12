@@ -43,8 +43,8 @@ Route::prefix("admin")->group(function () {
     Route::resource('course', CourseController::class)->except(["edit", "create"]);
     Route::get('recap', [AdminRecapController::class, 'index']);
     Route::resource('aboutUs', AboutUsController::class)->except(['edit','create'])->parameters(["aboutUs" => "aboutUs"]);
+    Route::get('major', [MajorController::class, 'index']);
 });
-Route::get('allMajor', [MajorController::class, 'allMajor']);
 
 Route::get('/foo', function () {
     Artisan::call('storage:link');

@@ -13,7 +13,7 @@ class MajorSeeder extends Seeder
      */
     public function run(): void
     {
-        $majors = ["IPA", "IPS"];
+        $majors = ["IPA", "IPS", "UMUM", "OLAHRAGA & SENI"];
         foreach ($majors as $major) {
             Major::create([
                 "name" => $major,

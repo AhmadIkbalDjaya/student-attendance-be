@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class MajorController extends Controller
 {
-    public function allMajor()
+    public function index()
     {
         $majors = Major::all();
         return response()->json([
