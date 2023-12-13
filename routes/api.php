@@ -32,18 +32,20 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::prefix("admin")->group(function () {
-    Route::get('home', [AdminController::class, 'home']);
-    Route::resource('semester', SemesterController::class);
-    Route::get('semester/{semester}/setActive', [SemesterController::class, 'setActive']);
-    Route::resource('claass', ClaassController::class)->except(["edit", "create"]);
-    Route::resource('teacher', TeacherController::class)->except(["edit", "create"]);
-    Route::post('teacher/setPass/{teacher}', [TeacherController::class, 'setPass']);
-    Route::resource('student', StudentController::class)->except(["edit", "create"]);
-    Route::get('studentByClaass/{claass}', [StudentController::class, 'studentByClaass']);
-    Route::resource('course', CourseController::class)->except(["edit", "create"]);
-    Route::get('recap', [AdminRecapController::class, 'index']);
-    Route::resource('aboutUs', AboutUsController::class)->except(['edit','create'])->parameters(["aboutUs" => "aboutUs"]);
-    Route::get('major', [MajorController::class, 'index']);
+    Route::middleware(["auth:sanctum", 'role:0'])->group(function () {
+        Route::get('home', [AdminController::class, 'home']);
+        Route::resource('semester', SemesterController::class);
+        Route::get('semester/{semester}/setActive', [SemesterController::class, 'setActive']);
+        Route::resource('claass', ClaassController::class)->except(["edit", "create"]);
+        Route::resource('teacher', TeacherController::class)->except(["edit", "create"]);
+        Route::post('teacher/setPass/{teacher}', [TeacherController::class, 'setPass']);
+        Route::resource('student', StudentController::class)->except(["edit", "create"]);
+        Route::get('studentByClaass/{claass}', [StudentController::class, 'studentByClaass']);
+        Route::resource('course', CourseController::class)->except(["edit", "create"]);
+        Route::get('recap', [AdminRecapController::class, 'index']);
+        Route::resource('aboutUs', AboutUsController::class)->except(['edit', 'create'])->parameters(["aboutUs" => "aboutUs"]);
+        Route::get('major', [MajorController::class, 'index']);
+    });
 });
 
 Route::get('/foo', function () {
@@ -57,25 +59,26 @@ Route::controller(AuthenticateController::class)->group(function () {
 });
 
 Route::prefix("teacher")->group(function () {
-    Route::get("home", [TeacherHomeController::class, "index"])->middleware(['auth:sanctum']);
-    Route::middleware(['auth:sanctum'])->group(function () {
+    Route::middleware(['auth:sanctum', 'role:1'])->group(function () {
+        Route::get("home", [TeacherHomeController::class, "index"]);
         Route::controller(TeacherProfilController::class)->group(function () {
             Route::get('teacherCourses', 'teacherCourses');
             Route::post('updateProfil', 'updateProfil');
         });
-    });
-    Route::controller(AttendanceController::class)->group(function () {
-        Route::get('attendance/course/{course}', 'courseAttendances');
-        Route::get('attendance/{attendance}', 'show');
-        Route::post('attendance', 'store');
-        Route::put('attendance/{attendance}', 'update');
-        Route::delete('attendance/{attendance}', 'destroy');
-    });
-    Route::controller(StudentAttendanceController::class)->group(function () {
-        Route::get('studentAttendance/{attendance}', 'show');
-        Route::put('studentAttendance/{attendance}', 'update');
+        Route::controller(AttendanceController::class)->group(function () {
+            Route::get('attendance/course/{course}', 'courseAttendances');
+            Route::get('attendance/{attendance}', 'show');
+            Route::post('attendance', 'store');
+            Route::put('attendance/{attendance}', 'update');
+            Route::delete('attendance/{attendance}', 'destroy');
+        });
+        Route::controller(StudentAttendanceController::class)->group(function () {
+            Route::get('studentAttendance/{attendance}', 'show');
+            Route::put('studentAttendance/{attendance}', 'update');
+        });
     });
 });
+
 Route::controller(RecapController::class)->group(function () {
     Route::get('recap/{course}', 'recap');
-});
+})->middleware(['auth:sanctum']);
