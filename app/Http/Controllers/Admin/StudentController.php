@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Http\Resources\StudentDetailResource;
-use App\Http\Resources\StudentResource;
 use App\Models\Claass;
 use App\Models\Student;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\StudentResource;
+use App\Http\Resources\StudentDetailResource;
 
 class StudentController extends Controller
 {
