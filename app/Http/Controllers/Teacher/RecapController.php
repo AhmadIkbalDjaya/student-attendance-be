@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Teacher;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\CourseDetailResource;
 use App\Models\Attendance;
 use App\Models\Course;
 use App\Models\Student;
@@ -42,15 +43,8 @@ class RecapController extends Controller
             ];
         }
 
-        $semester = $course->semester->odd_even ? "Ganjil" : "Genap";
         $data = [
-            "course" => [
-                "id" => $course->id,
-                "claass" => $course->claass->name,
-                "course_name" => $course->name,
-                "semester" => "(" . $semester . ") " . $course->semester->start_year . " / "  . $course->semester->end_year,
-                "attendance_count" => $course->attendances->count(),
-            ],
+            "course" => new CourseDetailResource($course),
             "students_recap" => $response,
 
         ];

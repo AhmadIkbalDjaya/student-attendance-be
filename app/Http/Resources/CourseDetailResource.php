@@ -23,8 +23,10 @@ class CourseDetailResource extends JsonResource
             "claass_id" => $this->claass_id,
             "teacher" => $this->teacher->name,
             "teacher_id" => $this->teacher_id,
-            "semester" => "$odd_even $semester->start_year / $semester->end_year",
+            "semester" => "($odd_even) $semester->start_year / $semester->end_year",
             "semester_id" => $this->semester_id,
+            "student_count" => $this->students->count(),
+            "attendance_count" => $this->attendances->count(),
         ];
     }
 }

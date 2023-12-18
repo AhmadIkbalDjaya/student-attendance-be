@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Teacher;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\AttendanceResource;
+use App\Http\Resources\CourseDetailResource;
 use App\Http\Resources\StudentAttendanceResource;
 use App\Models\Attendance;
 use App\Models\Course;
@@ -17,15 +18,9 @@ class AttendanceController extends Controller
 {
     public function courseAttendances(Course $course)
     {
-        $semester = $course->semester->odd_even ? "Ganjil" : "Genap";
         return response()->json([
             "data" => [
-                "course" => [
-                    "id" => $course->id,
-                    "name" => $course->name,
-                    "claass" => $course->claass->name,
-                    "semester" => "(" . $semester . ") " . $course->semester->start_year . " / "  . $course->semester->end_year,
-                ],
+                "course" => new CourseDetailResource($course),
                 "attendances" => AttendanceResource::collection($course->attendances),
             ]
         ], 200);
