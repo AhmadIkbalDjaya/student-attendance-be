@@ -48,7 +48,7 @@ Route::prefix("admin")->group(function () {
     });
 });
 
-Route::middleware(["auth:sanctun"])->group(function () {
+Route::middleware(["auth:sanctum"])->group(function () {
     Route::get('admin/aboutUs', [AboutUsController::class, 'index']);
     Route::controller(RecapController::class)->group(function () {
         Route::get('recap/{course}', 'recap');
