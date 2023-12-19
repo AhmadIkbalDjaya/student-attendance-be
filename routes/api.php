@@ -48,6 +48,13 @@ Route::prefix("admin")->group(function () {
     });
 });
 
+Route::middleware(["auth:sanctun"])->group(function () {
+    Route::get('admin/aboutUs', [AboutUsController::class, 'index']);
+    Route::controller(RecapController::class)->group(function () {
+        Route::get('recap/{course}', 'recap');
+    });
+});
+
 Route::get('/foo', function () {
     Artisan::call('storage:link');
 });
@@ -78,7 +85,3 @@ Route::prefix("teacher")->group(function () {
         });
     });
 });
-
-Route::controller(RecapController::class)->group(function () {
-    Route::get('recap/{course}', 'recap');
-})->middleware(['auth:sanctum']);
