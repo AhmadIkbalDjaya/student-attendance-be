@@ -16,3 +16,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/tesss', function () {
+    return response()->json([
+        "data" => "Success",
+    ]);
+});
