@@ -34,7 +34,7 @@ use Illuminate\Support\Facades\Route;
 Route::prefix("admin")->group(function () {
     Route::middleware(["auth:sanctum", 'role:0'])->group(function () {
         Route::get('home', [AdminController::class, 'home']);
-        Route::resource('semester', SemesterController::class);
+        Route::resource('semester', SemesterController::class)->except(["edit", "create"]);
         Route::get('semester/{semester}/setActive', [SemesterController::class, 'setActive']);
         Route::resource('claass', ClaassController::class)->except(["edit", "create"]);
         Route::resource('teacher', TeacherController::class)->except(["edit", "create"]);
