@@ -1,0 +1,3419 @@
+{
+    "openapi": "3.0.0",
+    "x-stoplight": {
+        "id": "qwggsuqa6rtzt"
+    },
+    "info": {
+        "title": "Mobile Student Attendance",
+        "version": "1.0",
+        "description": "Student Attendance Mobile API Spec",
+        "contact": {
+            "name": "Ikbal Djaya",
+            "url": "https://ahmadikbaldjaya.github.io/student-attendance-be/",
+            "email": "ikbaldjaya@gmail.com"
+        },
+        "license": {
+            "name": "unlicensed",
+            "url": "-"
+        }
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8000/api",
+            "description": "Local"
+        },
+        {
+            "url": "https://mobile.attendance.pariwang.com/api",
+            "description": "Live"
+        },
+        {
+            "url": "https://mobile.attendance.sman17gowa.com/api",
+            "description": "Old Live"
+        }
+    ],
+    "tags": [
+        {
+            "name": "Admin",
+            "description": "Admin Endpoint"
+        },
+        {
+            "name": "Login",
+            "description": "Auth Endpoint"
+        },
+        {
+            "name": "Teacher",
+            "description": "Teacher Endpoint"
+        }
+    ],
+    "paths": {
+        "/login": {
+            "post": {
+                "summary": "Login",
+                "tags": ["Login"],
+                "responses": {
+                    "200": {
+                        "description": "Login Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "x-stoplight": {
+                                                "id": "80dd805idybah"
+                                            }
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "x-stoplight": {
+                                                "id": "gl8ygga71yjc8"
+                                            },
+                                            "properties": {
+                                                "token": {
+                                                    "type": "string",
+                                                    "x-stoplight": {
+                                                        "id": "q9w8ir1yh7ec9"
+                                                    }
+                                                },
+                                                "user": {
+                                                    "type": "object",
+                                                    "x-stoplight": {
+                                                        "id": "lt7znwt7n0z0i"
+                                                    },
+                                                    "properties": {
+                                                        "id": {
+                                                            "type": "integer",
+                                                            "x-stoplight": {
+                                                                "id": "3ninhzznwr8ly"
+                                                            }
+                                                        },
+                                                        "username": {
+                                                            "type": "string",
+                                                            "x-stoplight": {
+                                                                "id": "cba5r6plc1v25"
+                                                            }
+                                                        },
+                                                        "email": {
+                                                            "type": "string",
+                                                            "x-stoplight": {
+                                                                "id": "w204xnw4a34vw"
+                                                            }
+                                                        },
+                                                        "name": {
+                                                            "type": "string",
+                                                            "x-stoplight": {
+                                                                "id": "bl9xuvdfkx2yo"
+                                                            },
+                                                            "nullable": true
+                                                        },
+                                                        "phone": {
+                                                            "type": "string",
+                                                            "x-stoplight": {
+                                                                "id": "j78ta16xnsv2y"
+                                                            },
+                                                            "nullable": true
+                                                        },
+                                                        "gender": {
+                                                            "type": "string",
+                                                            "x-stoplight": {
+                                                                "id": "ifd8prqozbnzx"
+                                                            },
+                                                            "nullable": true
+                                                        }
+                                                    }
+                                                },
+                                                "role": {
+                                                    "type": "string",
+                                                    "x-stoplight": {
+                                                        "id": "ek28fkkbrrdaa"
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "x-stoplight": {
+                                                "id": "pwzspwwdqxnyd"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Failed Login",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "x-stoplight": {
+                                                "id": "wx5tdx85zahvb"
+                                            }
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "x-stoplight": {
+                                                "id": "dr93qs8ycz9kg"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "operationId": "post-login",
+                "x-stoplight": {
+                    "id": "qsl6hxsvlbaog"
+                },
+                "description": "Authentication Login\r\n\r\nAuth: Guest",
+                "security": [],
+                "parameters": [
+                    {
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "header",
+                        "name": "Accept",
+                        "description": "application/json"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "username": {
+                                        "type": "string",
+                                        "x-stoplight": {
+                                            "id": "qjhe9b7dt2bq6"
+                                        }
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "x-stoplight": {
+                                            "id": "x7oi7g91bu65p"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/logout": {
+            "get": {
+                "summary": "Logout",
+                "tags": ["Login"],
+                "responses": {
+                    "200": {
+                        "description": "Success Logout",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "x-stoplight": {
+                                                "id": "ray5ibcjimwto"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Failed Logout",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "x-stoplight": {
+                                                "id": "ppddk2fx6mtbm"
+                                            }
+                                        },
+                                        "errorMessage": {
+                                            "type": "string",
+                                            "x-stoplight": {
+                                                "id": "eg4ae5ns6drwz"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "operationId": "get-logout",
+                "x-stoplight": {
+                    "id": "51gebq919ocpp"
+                },
+                "description": "Authentication Logout\r\n\r\nRole : Admin | Teacher",
+                "parameters": [
+                    {
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "header",
+                        "name": "Accept",
+                        "description": "application/json"
+                    }
+                ]
+            }
+        },
+        "/user/changePass": {
+            "post": {
+                "summary": "Change Auth Password",
+                "tags": ["Login"],
+                "responses": {
+                    "200": {
+                        "description": "Success Change Password",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "x-stoplight": {
+                                                "id": "26jcxhwy60oic"
+                                            },
+                                            "example": "Password Berhasil Diubah"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "operationId": "post-auth-changePass",
+                "x-stoplight": {
+                    "id": "wshuih0isx6cp"
+                },
+                "description": "Change User Login Password\r\n\r\nRole : Admin | Teacher",
+                "requestBody": {
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "type": "object",
+                                "required": [
+                                    "old_password",
+                                    "new_password",
+                                    "new_password_confirmation"
+                                ],
+                                "properties": {
+                                    "old_password": {
+                                        "type": "string",
+                                        "x-stoplight": {
+                                            "id": "4jkqvsf19wvs5"
+                                        }
+                                    },
+                                    "new_password": {
+                                        "type": "string",
+                                        "x-stoplight": {
+                                            "id": "lb2kxwg2bqo3w"
+                                        }
+                                    },
+                                    "new_password_confirmation": {
+                                        "type": "string",
+                                        "x-stoplight": {
+                                            "id": "d5tzii80jikdq"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "parameters": []
+        },
+        "/teacher/home": {
+            "get": {
+                "summary": "Teacher Home",
+                "tags": ["Teacher"],
+                "responses": {
+                    "200": {
+                        "description": "Success Get Data",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "object",
+                                            "x-stoplight": {
+                                                "id": "gxt9xqwsvbq00"
+                                            },
+                                            "properties": {
+                                                "class_count": {
+                                                    "type": "integer",
+                                                    "x-stoplight": {
+                                                        "id": "vpomwo3tlg1ey"
+                                                    }
+                                                },
+                                                "course_count": {
+                                                    "type": "integer",
+                                                    "x-stoplight": {
+                                                        "id": "cch7jpsy2xsdj"
+                                                    }
+                                                },
+                                                "student_count": {
+                                                    "type": "integer",
+                                                    "x-stoplight": {
+                                                        "id": "wv6oul5557mc2"
+                                                    }
+                                                },
+                                                "attendance_count": {
+                                                    "type": "integer",
+                                                    "x-stoplight": {
+                                                        "id": "7ekym6eiboq3b"
+                                                    }
+                                                },
+                                                "attendance_null_count": {
+                                                    "type": "integer",
+                                                    "x-stoplight": {
+                                                        "id": "nzz0bf85kro7f"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "operationId": "get-teacher-home",
+                "x-stoplight": {
+                    "id": "hiz5oh1l8k3yw"
+                },
+                "description": "Teacher User Home Page\r\n\r\nRole: Teacher"
+            }
+        },
+        "/teacher/teacherCourses": {
+            "get": {
+                "summary": "Teacher Courses",
+                "tags": ["Teacher"],
+                "responses": {
+                    "200": {
+                        "description": "Success Get Data",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "x-stoplight": {
+                                                "id": "uw7kyx2rkieyu"
+                                            },
+                                            "items": {
+                                                "x-stoplight": {
+                                                    "id": "1wqn8fnqwtvb0"
+                                                },
+                                                "type": "object",
+                                                "properties": {
+                                                    "major": {
+                                                        "type": "string",
+                                                        "x-stoplight": {
+                                                            "id": "58fsqzk08m3bg"
+                                                        }
+                                                    },
+                                                    "levels": {
+                                                        "type": "array",
+                                                        "x-stoplight": {
+                                                            "id": "q1jbm1khllk25"
+                                                        },
+                                                        "items": {
+                                                            "x-stoplight": {
+                                                                "id": "68li6mlwuc2rm"
+                                                            },
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "level": {
+                                                                    "type": "string",
+                                                                    "x-stoplight": {
+                                                                        "id": "so1gkponcmlax"
+                                                                    }
+                                                                },
+                                                                "claasses": {
+                                                                    "type": "array",
+                                                                    "x-stoplight": {
+                                                                        "id": "5wkgxopg1uan9"
+                                                                    },
+                                                                    "items": {
+                                                                        "x-stoplight": {
+                                                                            "id": "69qte6p3c3pg7"
+                                                                        },
+                                                                        "type": "object",
+                                                                        "properties": {
+                                                                            "claass_name": {
+                                                                                "type": "string",
+                                                                                "x-stoplight": {
+                                                                                    "id": "b8ld8u2h3bic6"
+                                                                                }
+                                                                            },
+                                                                            "courses": {
+                                                                                "type": "array",
+                                                                                "x-stoplight": {
+                                                                                    "id": "uc9pc6j1a9koa"
+                                                                                },
+                                                                                "items": {
+                                                                                    "x-stoplight": {
+                                                                                        "id": "00mchij4w54na"
+                                                                                    },
+                                                                                    "type": "object",
+                                                                                    "properties": {
+                                                                                        "id": {
+                                                                                            "type": "integer",
+                                                                                            "x-stoplight": {
+                                                                                                "id": "i8jl2w3bz1xed"
+                                                                                            }
+                                                                                        },
+                                                                                        "course_name": {
+                                                                                            "type": "string",
+                                                                                            "x-stoplight": {
+                                                                                                "id": "m2tkxzqsje457"
+                                                                                            }
+                                                                                        },
+                                                                                        "claass_id": {
+                                                                                            "type": "integer",
+                                                                                            "x-stoplight": {
+                                                                                                "id": "iyxdo9lj0zmf7"
+                                                                                            }
+                                                                                        },
+                                                                                        "teacher_id": {
+                                                                                            "type": "integer",
+                                                                                            "x-stoplight": {
+                                                                                                "id": "qmp1f2me3eer5"
+                                                                                            }
+                                                                                        },
+                                                                                        "semester_id": {
+                                                                                            "type": "integer",
+                                                                                            "x-stoplight": {
+                                                                                                "id": "rqbzy84mp1jff"
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "operationId": "get-teacher-teacherCourses",
+                "x-stoplight": {
+                    "id": "wv4hsgxr24v69"
+                },
+                "description": "Get Auth Teacher Courses"
+            }
+        },
+        "/teacher/updateProfile": {
+            "get": {
+                "summary": "Update Profile",
+                "tags": ["Teacher"],
+                "responses": {
+                    "200": {
+                        "description": "Success Update Profile",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "object",
+                                            "x-stoplight": {
+                                                "id": "elyx6xiswh7nb"
+                                            },
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "x-stoplight": {
+                                                        "id": "jyjr32aigoxbh"
+                                                    }
+                                                },
+                                                "username": {
+                                                    "type": "string",
+                                                    "x-stoplight": {
+                                                        "id": "xi81tzr1gnpcr"
+                                                    }
+                                                },
+                                                "email": {
+                                                    "type": "string",
+                                                    "x-stoplight": {
+                                                        "id": "a93rgk2qzh7nc"
+                                                    },
+                                                    "format": "email"
+                                                },
+                                                "name": {
+                                                    "type": "string",
+                                                    "x-stoplight": {
+                                                        "id": "ffm95yztzmqvx"
+                                                    }
+                                                },
+                                                "phone": {
+                                                    "type": "string",
+                                                    "x-stoplight": {
+                                                        "id": "ghyu5mihmb0sj"
+                                                    }
+                                                },
+                                                "gender": {
+                                                    "type": "string",
+                                                    "x-stoplight": {
+                                                        "id": "kdj8gf2a51whk"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "operationId": "get-teacher-updateProfile",
+                "x-stoplight": {
+                    "id": "645quw6uwmcxb"
+                },
+                "description": "Update Auth Teacher Profile\r\n\r\nRole: Teacher",
+                "requestBody": {
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "type": "object",
+                                "required": [
+                                    "name",
+                                    "username",
+                                    "email",
+                                    "gender"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "x-stoplight": {
+                                            "id": "bhgt1xd74cy4h"
+                                        }
+                                    },
+                                    "username": {
+                                        "type": "string",
+                                        "x-stoplight": {
+                                            "id": "fin8se0iz5hef"
+                                        }
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "x-stoplight": {
+                                            "id": "2agrhz0ndwieb"
+                                        },
+                                        "format": "email"
+                                    },
+                                    "phone": {
+                                        "type": "string",
+                                        "x-stoplight": {
+                                            "id": "28i2h9t36l45k"
+                                        }
+                                    },
+                                    "gender": {
+                                        "x-stoplight": {
+                                            "id": "1khx5u8lwmynx"
+                                        },
+                                        "enum": ["male", "female"]
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/teacher/attendance/course/{course_id}": {
+            "parameters": [
+                {
+                    "description": "Course Id",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "course_id",
+                    "in": "path",
+                    "required": true
+                }
+            ],
+            "get": {
+                "summary": "Course Attendance",
+                "tags": ["Teacher"],
+                "responses": {
+                    "200": {
+                        "description": "Success Get Data",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "object",
+                                            "x-stoplight": {
+                                                "id": "75mtvx14sz0ey"
+                                            },
+                                            "properties": {
+                                                "course": {
+                                                    "type": "object",
+                                                    "x-stoplight": {
+                                                        "id": "g6e4y16xyczdq"
+                                                    },
+                                                    "properties": {
+                                                        "id": {
+                                                            "type": "integer",
+                                                            "x-stoplight": {
+                                                                "id": "qc60tkxip8b8n"
+                                                            }
+                                                        },
+                                                        "name": {
+                                                            "type": "string",
+                                                            "x-stoplight": {
+                                                                "id": "k3om168qtvvcb"
+                                                            }
+                                                        },
+                                                        "claass": {
+                                                            "type": "string",
+                                                            "x-stoplight": {
+                                                                "id": "q32s3wt6pn1l1"
+                                                            }
+                                                        },
+                                                        "claass_id": {
+                                                            "type": "integer",
+                                                            "x-stoplight": {
+                                                                "id": "gspmmibt7in3w"
+                                                            }
+                                                        },
+                                                        "teacher": {
+                                                            "type": "string",
+                                                            "x-stoplight": {
+                                                                "id": "5ovrsknqpdj4v"
+                                                            }
+                                                        },
+                                                        "teacher_id": {
+                                                            "type": "integer",
+                                                            "x-stoplight": {
+                                                                "id": "ohmjfp8rsi9zq"
+                                                            }
+                                                        },
+                                                        "semester": {
+                                                            "type": "string",
+                                                            "x-stoplight": {
+                                                                "id": "18u4ytuf8jrra"
+                                                            }
+                                                        },
+                                                        "semester_id": {
+                                                            "type": "integer",
+                                                            "x-stoplight": {
+                                                                "id": "ytgjkhxi1fm6e"
+                                                            }
+                                                        },
+                                                        "student_count": {
+                                                            "type": "integer",
+                                                            "x-stoplight": {
+                                                                "id": "ip29cv86pq1we"
+                                                            }
+                                                        },
+                                                        "attendacne_count": {
+                                                            "type": "integer",
+                                                            "x-stoplight": {
+                                                                "id": "zdhso0yfl1pys"
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                "attendances": {
+                                                    "type": "array",
+                                                    "x-stoplight": {
+                                                        "id": "79x2yxduefp6e"
+                                                    },
+                                                    "items": {
+                                                        "$ref": "#/components/schemas/Attendance"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "operationId": "get-teacher-attendance-course-course_id",
+                "x-stoplight": {
+                    "id": "sz9403b8ud3sx"
+                },
+                "description": "Get Course Attendances"
+            }
+        },
+        "/teacher/attendance/{attendance_id}": {
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "attendance_id",
+                    "in": "path",
+                    "required": true,
+                    "description": "Attendance Id"
+                }
+            ],
+            "get": {
+                "summary": "Get Attendance",
+                "tags": ["Teacher"],
+                "responses": {
+                    "200": {
+                        "description": "Success Get Data",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/Attendance"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "operationId": "get-teacher-attendance-attendance_id",
+                "x-stoplight": {
+                    "id": "dztavfh8cscg0"
+                },
+                "description": "Get Course Attendance Data"
+            },
+            "put": {
+                "summary": "Update Attendance",
+                "tags": ["Teacher"],
+                "responses": {
+                    "200": {
+                        "description": "Success Update",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/Attendance"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "operationId": "put-teacher-attendance-attendance_id",
+                "x-stoplight": {
+                    "id": "l979oh1qm5xko"
+                },
+                "description": "Update Attendance",
+                "requestBody": {
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "type": "object",
+                                "required": ["title", "datetime"],
+                                "properties": {
+                                    "title": {
+                                        "type": "string",
+                                        "x-stoplight": {
+                                            "id": "4chibj7taimuu"
+                                        }
+                                    },
+                                    "datetime": {
+                                        "type": "string",
+                                        "x-stoplight": {
+                                            "id": "vot4g8w7fqgbf"
+                                        },
+                                        "format": "date-time"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete Attendance",
+                "tags": ["Teacher"],
+                "responses": {
+                    "200": {
+                        "description": "Success Delete Attendance",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "x-stoplight": {
+                                                "id": "dlyyskgjml1ww"
+                                            }
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "x-stoplight": {
+                                                "id": "p9pp1aoiqi1pt"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "operationId": "delete-teacher-attendance-attendance_id",
+                "x-stoplight": {
+                    "id": "9rkjs4zcgdpw6"
+                },
+                "description": "Delete Course Attendance"
+            }
+        },
+        "/teacher/attendance": {
+            "post": {
+                "summary": "Create New Attendance",
+                "tags": ["Teacher"],
+                "responses": {
+                    "200": {
+                        "description": "Success Create New Attendance",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "x-stoplight": {
+                                                "id": "5ez59zpdiuapm"
+                                            }
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/Attendance"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "operationId": "post-teacher-attendance",
+                "x-stoplight": {
+                    "id": "0nh3mge7wycly"
+                },
+                "description": "Create New Course Attendance",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "required": ["course_id", "title", "datetime"],
+                                "properties": {
+                                    "course_id": {
+                                        "type": "integer",
+                                        "x-stoplight": {
+                                            "id": "n8hmpe4j9b6nu"
+                                        }
+                                    },
+                                    "title": {
+                                        "type": "string",
+                                        "x-stoplight": {
+                                            "id": "b96k48hfw8rug"
+                                        }
+                                    },
+                                    "datetime": {
+                                        "type": "string",
+                                        "x-stoplight": {
+                                            "id": "5ol7vk954a7eb"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/teacher/studentAttendance/{attendance_id}": {
+            "get": {
+                "summary": "Get Student Attendance",
+                "tags": ["Teacher"],
+                "responses": {
+                    "200": {
+                        "description": "Success Get Data",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "object",
+                                            "x-stoplight": {
+                                                "id": "a5qxkile559wp"
+                                            },
+                                            "properties": {
+                                                "attendance": {
+                                                    "type": "object",
+                                                    "x-stoplight": {
+                                                        "id": "6ial1spcblsxg"
+                                                    },
+                                                    "properties": {
+                                                        "id": {
+                                                            "type": "integer",
+                                                            "x-stoplight": {
+                                                                "id": "nstev85tl91oa"
+                                                            }
+                                                        },
+                                                        "title": {
+                                                            "type": "string",
+                                                            "x-stoplight": {
+                                                                "id": "0dsgtg1awfukm"
+                                                            }
+                                                        },
+                                                        "claass": {
+                                                            "type": "string",
+                                                            "x-stoplight": {
+                                                                "id": "ht97odp89joom"
+                                                            }
+                                                        },
+                                                        "course": {
+                                                            "type": "string",
+                                                            "x-stoplight": {
+                                                                "id": "nbtmqwuq186i3"
+                                                            }
+                                                        },
+                                                        "datetime": {
+                                                            "type": "string",
+                                                            "x-stoplight": {
+                                                                "id": "ef9mzunfwof83"
+                                                            },
+                                                            "format": "date-time"
+                                                        },
+                                                        "student_count": {
+                                                            "type": "integer",
+                                                            "x-stoplight": {
+                                                                "id": "pf1ue2pbjbo71"
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                "student_attendances": {
+                                                    "type": "array",
+                                                    "x-stoplight": {
+                                                        "id": "ifmaei3da2h40"
+                                                    },
+                                                    "items": {
+                                                        "x-stoplight": {
+                                                            "id": "5413xmvd11y7y"
+                                                        },
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "id": {
+                                                                "type": "integer",
+                                                                "x-stoplight": {
+                                                                    "id": "im6wp0sanva16"
+                                                                }
+                                                            },
+                                                            "student_name": {
+                                                                "type": "string",
+                                                                "x-stoplight": {
+                                                                    "id": "c1vkypywilpq1"
+                                                                }
+                                                            },
+                                                            "nis": {
+                                                                "type": "string",
+                                                                "x-stoplight": {
+                                                                    "id": "1iqfrq2egu4ap"
+                                                                }
+                                                            },
+                                                            "gender": {
+                                                                "x-stoplight": {
+                                                                    "id": "vx0d4d35llewv"
+                                                                },
+                                                                "enum": ["male"]
+                                                            },
+                                                            "status_id": {
+                                                                "type": "integer",
+                                                                "x-stoplight": {
+                                                                    "id": "1k3acdyfa3q4j"
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "operationId": "get-teacher-studentAttendance",
+                "x-stoplight": {
+                    "id": "8n28xrq0u9gde"
+                },
+                "description": "Get Student Attedance Data"
+            },
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "attendance_id",
+                    "in": "path",
+                    "required": true,
+                    "description": "Attendance Id"
+                }
+            ],
+            "put": {
+                "summary": "Update Student Attendance",
+                "tags": ["Teacher"],
+                "responses": {
+                    "200": {
+                        "description": "Success Update Student Attendance",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "x-stoplight": {
+                                                "id": "6igs75uj2qptf"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "operationId": "put-teacher-studentAttendance-attendance_id",
+                "x-stoplight": {
+                    "id": "we4pf5x7pc2ry"
+                },
+                "description": "Update Student Attendance",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "ids": {
+                                        "type": "array",
+                                        "x-stoplight": {
+                                            "id": "rnkd27bbymi27"
+                                        },
+                                        "items": {
+                                            "x-stoplight": {
+                                                "id": "xfanlluj7mlbk"
+                                            },
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "status_ids": {
+                                        "type": "array",
+                                        "x-stoplight": {
+                                            "id": "yjkbnps2q584x"
+                                        },
+                                        "items": {
+                                            "x-stoplight": {
+                                                "id": "0fnh2y26sn8yh"
+                                            },
+                                            "type": "integer"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/admin/home": {
+            "get": {
+                "summary": "Admin Home",
+                "tags": ["Admin"],
+                "responses": {
+                    "200": {
+                        "description": "Success Get Data",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "object",
+                                            "x-stoplight": {
+                                                "id": "m1dhj8djla2ci"
+                                            },
+                                            "properties": {
+                                                "claass_count": {
+                                                    "type": "integer",
+                                                    "x-stoplight": {
+                                                        "id": "q3atluto4ofnd"
+                                                    }
+                                                },
+                                                "teacher_count": {
+                                                    "type": "integer",
+                                                    "x-stoplight": {
+                                                        "id": "3k1jfvehvs48q"
+                                                    }
+                                                },
+                                                "student_count": {
+                                                    "type": "integer",
+                                                    "x-stoplight": {
+                                                        "id": "hky441ej190ka"
+                                                    }
+                                                },
+                                                "course_count": {
+                                                    "type": "integer",
+                                                    "x-stoplight": {
+                                                        "id": "bjblb35dw5arq"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "operationId": "get-admin-home",
+                "x-stoplight": {
+                    "id": "d5iqe0e1ilnuz"
+                },
+                "description": "Admin Home"
+            }
+        },
+        "/admin/semester": {
+            "get": {
+                "summary": "List Semesters",
+                "tags": ["Admin"],
+                "responses": {
+                    "200": {
+                        "description": "Success Get Data",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "x-stoplight": {
+                                                "id": "jk672qo1x1v00"
+                                            },
+                                            "items": {
+                                                "$ref": "#/components/schemas/Semester"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "operationId": "get-admin-semester",
+                "x-stoplight": {
+                    "id": "8ef1w26fy0zi9"
+                },
+                "description": "List Of Semesters"
+            },
+            "post": {
+                "summary": "Create Semester",
+                "tags": ["Admin"],
+                "responses": {
+                    "200": {
+                        "description": "Success Create New Semester",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/Semester"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "operationId": "post-admin-semester",
+                "x-stoplight": {
+                    "id": "115qvbv3gewf4"
+                },
+                "description": "Create New Semester",
+                "requestBody": {
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "type": "object",
+                                "required": ["start_year", "odd_even"],
+                                "properties": {
+                                    "start_year": {
+                                        "type": "integer",
+                                        "x-stoplight": {
+                                            "id": "hl83wwqygqm53"
+                                        }
+                                    },
+                                    "odd_even": {
+                                        "type": "boolean",
+                                        "x-stoplight": {
+                                            "id": "239nj1kltcfg0"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/admin/semester/{semester_id}": {
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "semester_id",
+                    "in": "path",
+                    "required": true,
+                    "description": "Semester Id"
+                }
+            ],
+            "get": {
+                "summary": "Get Semester",
+                "tags": ["Admin"],
+                "responses": {
+                    "200": {
+                        "description": "Success Get Data",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/Semester"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "operationId": "get-admin-semester-semester_id",
+                "x-stoplight": {
+                    "id": "y6oudnv66guhb"
+                },
+                "description": "Get Semester By iD"
+            },
+            "put": {
+                "summary": "Edit Semester",
+                "tags": ["Admin"],
+                "responses": {
+                    "200": {
+                        "description": "Success Edit"
+                    }
+                },
+                "operationId": "put-admin-semester-semester_id",
+                "x-stoplight": {
+                    "id": "0z7uhypfepvad"
+                },
+                "description": "Edit Semester By Id",
+                "requestBody": {
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "type": "object",
+                                "required": ["start_year", "odd_even"],
+                                "properties": {
+                                    "start_year": {
+                                        "type": "integer",
+                                        "x-stoplight": {
+                                            "id": "geqkmrmz4vtq3"
+                                        }
+                                    },
+                                    "odd_even": {
+                                        "type": "boolean",
+                                        "x-stoplight": {
+                                            "id": "16rre2fa9b8j2"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete Semester",
+                "tags": ["Admin"],
+                "responses": {
+                    "200": {
+                        "description": "Success Delete",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "x-stoplight": {
+                                                "id": "fx6wt9eq3jpw2"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "operationId": "delete-admin-semester-semester_id",
+                "x-stoplight": {
+                    "id": "nel0e70sw3xec"
+                },
+                "description": "Delete Semester By Id"
+            }
+        },
+        "/admin/semester/{semester_id}/setActive": {
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "semester_id",
+                    "in": "path",
+                    "required": true,
+                    "description": "Semester Id"
+                }
+            ],
+            "get": {
+                "summary": "Set Active Semester",
+                "tags": ["Admin"],
+                "responses": {
+                    "200": {
+                        "description": "Success Set Active Semester",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "x-stoplight": {
+                                                "id": "83jgz0v2vrun1"
+                                            }
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/Semester"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "operationId": "get-admin-semester-semester_id-setActive",
+                "x-stoplight": {
+                    "id": "yq5n2rfqqv1rz"
+                },
+                "description": "Set Active Semester"
+            }
+        },
+        "/admin/claass": {
+            "get": {
+                "summary": "List Claasses",
+                "tags": ["Admin"],
+                "responses": {
+                    "200": {
+                        "description": "Success Get Data",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "x-stoplight": {
+                                                "id": "oa9uly6mboo2j"
+                                            },
+                                            "items": {
+                                                "$ref": "#/components/schemas/Claass"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "operationId": "get-admin-claass",
+                "x-stoplight": {
+                    "id": "jwy0a4as5mti3"
+                },
+                "description": "Get List Of Claasses"
+            },
+            "post": {
+                "summary": "Create Claass",
+                "tags": ["Admin"],
+                "responses": {
+                    "200": {
+                        "description": "Success Create Data",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/Claass"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "operationId": "post-admin-claass",
+                "x-stoplight": {
+                    "id": "6iu9mgtjbmom1"
+                },
+                "description": "Create New Claass",
+                "requestBody": {
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "type": "object",
+                                "required": ["major_id", "level", "name"],
+                                "properties": {
+                                    "major_id": {
+                                        "type": "integer",
+                                        "x-stoplight": {
+                                            "id": "0r2rb71m8w1kg"
+                                        }
+                                    },
+                                    "level": {
+                                        "x-stoplight": {
+                                            "id": "2mqo051lru9wr"
+                                        },
+                                        "enum": [10, 11, 12]
+                                    },
+                                    "name": {
+                                        "type": "string",
+                                        "x-stoplight": {
+                                            "id": "8cj4rb5xur3hg"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/admin/claass/{claass_id}": {
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "claass_id",
+                    "in": "path",
+                    "required": true,
+                    "description": "Claass Id"
+                }
+            ],
+            "get": {
+                "summary": "Get Claass",
+                "tags": ["Admin"],
+                "responses": {
+                    "200": {
+                        "description": "Success Get Data",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/Claass"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "operationId": "get-admin-claass-claass_id",
+                "x-stoplight": {
+                    "id": "9a1kdap7zhymn"
+                },
+                "description": "Get Claass By Id"
+            },
+            "put": {
+                "summary": "Edit Claass",
+                "tags": ["Admin"],
+                "responses": {
+                    "200": {
+                        "description": "Success Edit Data",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/Claass"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "operationId": "put-admin-claass-claass_id",
+                "x-stoplight": {
+                    "id": "icccqlc9zfm43"
+                },
+                "description": "Edit Claass By Id",
+                "requestBody": {
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "major_id": {
+                                        "type": "integer",
+                                        "x-stoplight": {
+                                            "id": "btfr4dpriuu25"
+                                        }
+                                    },
+                                    "level": {
+                                        "x-stoplight": {
+                                            "id": "rls6bt2elab2x"
+                                        },
+                                        "enum": [10, 11, 12]
+                                    },
+                                    "name": {
+                                        "type": "string",
+                                        "x-stoplight": {
+                                            "id": "kas9jjwxb5whm"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete Claass",
+                "tags": ["Admin"],
+                "responses": {
+                    "200": {
+                        "description": "Success Delete Data",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "x-stoplight": {
+                                                "id": "j2cpl6zvl33in"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "operationId": "delete-admin-claass-claass_id",
+                "x-stoplight": {
+                    "id": "qxmuh5d70dc2i"
+                },
+                "description": "Delete Claass By Id"
+            }
+        },
+        "/admin/teacher": {
+            "get": {
+                "summary": "List Teachers",
+                "tags": ["Admin"],
+                "responses": {
+                    "200": {
+                        "description": "Success Get Data",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "object",
+                                            "x-stoplight": {
+                                                "id": "bt5xeqjhnc7fj"
+                                            },
+                                            "properties": {
+                                                "id": {
+                                                    "type": "string",
+                                                    "x-stoplight": {
+                                                        "id": "dvyn23cd0e1g9"
+                                                    }
+                                                },
+                                                "username": {
+                                                    "type": "string",
+                                                    "x-stoplight": {
+                                                        "id": "zi4bf6ugda5ye"
+                                                    }
+                                                },
+                                                "name": {
+                                                    "type": "string",
+                                                    "x-stoplight": {
+                                                        "id": "lwxv73zpjb6fz"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "operationId": "get-admin-teacher",
+                "x-stoplight": {
+                    "id": "zn1vbvlr7f7kq"
+                },
+                "description": "Get List Of Teachers"
+            },
+            "post": {
+                "summary": "Create New Teacher",
+                "tags": ["Admin"],
+                "responses": {
+                    "200": {
+                        "description": "Success Create New Teacher",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/Teacher"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "operationId": "post-admin-teacher",
+                "x-stoplight": {
+                    "id": "uazawjz8u9izb"
+                },
+                "description": "Create New teacher",
+                "requestBody": {
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "type": "object",
+                                "required": [
+                                    "username",
+                                    "password",
+                                    "email",
+                                    "name",
+                                    "gender"
+                                ],
+                                "properties": {
+                                    "username": {
+                                        "type": "string",
+                                        "x-stoplight": {
+                                            "id": "w129e1bc1x1c1"
+                                        }
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "x-stoplight": {
+                                            "id": "yal27eku6fext"
+                                        },
+                                        "format": "password"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "x-stoplight": {
+                                            "id": "3jbqnyjmou98m"
+                                        },
+                                        "format": "email"
+                                    },
+                                    "name": {
+                                        "type": "string",
+                                        "x-stoplight": {
+                                            "id": "0shl2c8x95ett"
+                                        }
+                                    },
+                                    "phone": {
+                                        "type": "string",
+                                        "x-stoplight": {
+                                            "id": "strzjiso1s0fu"
+                                        }
+                                    },
+                                    "gender": {
+                                        "x-stoplight": {
+                                            "id": "jcmco5fxh66tg"
+                                        },
+                                        "enum": ["male", "female"]
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/admin/teacher/{teacher_id}": {
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "teacher_id",
+                    "in": "path",
+                    "required": true,
+                    "description": "Teacher Id"
+                }
+            ],
+            "get": {
+                "summary": "Get Teacher",
+                "tags": ["Admin"],
+                "responses": {
+                    "200": {
+                        "description": "Success Get Data",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/Teacher"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "operationId": "get-admin-teacher-teacher_id",
+                "x-stoplight": {
+                    "id": "7n5e299o6beq9"
+                },
+                "description": "Get Teacher By Id"
+            },
+            "put": {
+                "summary": "Edit Teacher",
+                "tags": ["Admin"],
+                "responses": {
+                    "200": {
+                        "description": "Success Edit Data",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/Teacher"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "operationId": "put-admin-teacher-teacher_id",
+                "x-stoplight": {
+                    "id": "mreluprhi1r1p"
+                },
+                "description": "Edit Teacher By Id",
+                "requestBody": {
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "type": "object",
+                                "required": [
+                                    "username",
+                                    "email",
+                                    "name",
+                                    "gender"
+                                ],
+                                "properties": {
+                                    "username": {
+                                        "type": "string",
+                                        "x-stoplight": {
+                                            "id": "y4xnh9213fdrp"
+                                        }
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "x-stoplight": {
+                                            "id": "z63soiq4sj51s"
+                                        },
+                                        "format": "password"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "x-stoplight": {
+                                            "id": "csnxk4s8qn429"
+                                        },
+                                        "format": "email"
+                                    },
+                                    "name": {
+                                        "type": "string",
+                                        "x-stoplight": {
+                                            "id": "znjyxvg75szjl"
+                                        }
+                                    },
+                                    "phone": {
+                                        "type": "string",
+                                        "x-stoplight": {
+                                            "id": "tlnjnyclkuqq3"
+                                        }
+                                    },
+                                    "gender": {
+                                        "x-stoplight": {
+                                            "id": "9r2o38hhdtas4"
+                                        },
+                                        "enum": ["male", "female"]
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete Teacher",
+                "tags": ["Admin"],
+                "responses": {
+                    "200": {
+                        "description": "Success Delete Teacher",
+                        "content": {
+                            "application/javascript": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "x-stoplight": {
+                                                "id": "366mgnk8twrd8"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "operationId": "delete-admin-teacher-teacher_id",
+                "x-stoplight": {
+                    "id": "agqkzsn063bai"
+                },
+                "description": "Delete Teacher By Id"
+            }
+        },
+        "/admin/teacher/setPass/{teacher_id}": {
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "teacher_id",
+                    "in": "path",
+                    "required": true,
+                    "description": "Teacher Id"
+                }
+            ],
+            "post": {
+                "summary": "Set Teacher Password",
+                "tags": ["Admin"],
+                "responses": {
+                    "200": {
+                        "description": "Success Set Teacher",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "x-stoplight": {
+                                                "id": "2ueces0htsy8v"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "operationId": "post-admin-teacher-setPass-teacher_id",
+                "x-stoplight": {
+                    "id": "m6klz84bwerte"
+                },
+                "description": "Set Teacher Password",
+                "requestBody": {
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "type": "object",
+                                "required": ["password"],
+                                "properties": {
+                                    "password": {
+                                        "type": "string",
+                                        "x-stoplight": {
+                                            "id": "5quzws90ugs0x"
+                                        },
+                                        "format": "password"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/admin/student": {
+            "get": {
+                "summary": "List Students",
+                "tags": ["Admin"],
+                "responses": {
+                    "200": {
+                        "description": "Success Get Data",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "x-stoplight": {
+                                                "id": "612cplfu4c96f"
+                                            },
+                                            "items": {
+                                                "x-stoplight": {
+                                                    "id": "texuacj8k5c4s"
+                                                },
+                                                "type": "object",
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "string",
+                                                        "x-stoplight": {
+                                                            "id": "eg9a66c4kinu0"
+                                                        }
+                                                    },
+                                                    "nis": {
+                                                        "type": "string",
+                                                        "x-stoplight": {
+                                                            "id": "lkhd5l0xosrvk"
+                                                        }
+                                                    },
+                                                    "name": {
+                                                        "type": "string",
+                                                        "x-stoplight": {
+                                                            "id": "i8jfu6tp9sx6j"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "operationId": "get-admin-student",
+                "x-stoplight": {
+                    "id": "6bjgqw9igwzyb"
+                },
+                "description": "Get List Of Students",
+                "security": []
+            },
+            "post": {
+                "summary": "Create Student",
+                "tags": ["Admin"],
+                "responses": {
+                    "200": {
+                        "description": "Success Create New Student",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "object",
+                                            "x-stoplight": {
+                                                "id": "atmi2jmh772x4"
+                                            },
+                                            "properties": {
+                                                "id": {
+                                                    "type": "string",
+                                                    "x-stoplight": {
+                                                        "id": "7mm96e9ugmid1"
+                                                    }
+                                                },
+                                                "nis": {
+                                                    "type": "string",
+                                                    "x-stoplight": {
+                                                        "id": "qs8c9zja5ouar"
+                                                    }
+                                                },
+                                                "name": {
+                                                    "type": "string",
+                                                    "x-stoplight": {
+                                                        "id": "doxd2qf4u9csn"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "operationId": "post-admin-student",
+                "x-stoplight": {
+                    "id": "ai8eplenwe0ij"
+                },
+                "description": "Create New Student",
+                "requestBody": {
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "type": "object",
+                                "required": [
+                                    "nis",
+                                    "name",
+                                    "gender",
+                                    "claass_id"
+                                ],
+                                "properties": {
+                                    "nis": {
+                                        "type": "string",
+                                        "x-stoplight": {
+                                            "id": "v3vagwgqy7w8u"
+                                        }
+                                    },
+                                    "name": {
+                                        "type": "string",
+                                        "x-stoplight": {
+                                            "id": "fmcmqy8nct9ry"
+                                        }
+                                    },
+                                    "gender": {
+                                        "x-stoplight": {
+                                            "id": "wzfhpzwoi77a8"
+                                        },
+                                        "enum": ["male", "female"]
+                                    },
+                                    "claass_id": {
+                                        "type": "string",
+                                        "x-stoplight": {
+                                            "id": "dhx3q0wx83hvd"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/admin/student/{student_id}": {
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "student_id",
+                    "in": "path",
+                    "required": true,
+                    "description": "Student Id"
+                }
+            ],
+            "get": {
+                "summary": "Get Student",
+                "tags": ["Admin"],
+                "responses": {
+                    "200": {
+                        "description": "Success Get Student",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/Student"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "operationId": "get-admin-student-student_id",
+                "x-stoplight": {
+                    "id": "2u931o5f0jvqt"
+                },
+                "description": "Get Student By Id"
+            },
+            "put": {
+                "summary": "Edit Student",
+                "tags": ["Admin"],
+                "responses": {
+                    "200": {
+                        "description": "Success Edit Student",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "object",
+                                            "x-stoplight": {
+                                                "id": "f1gmvot8y7dpz"
+                                            },
+                                            "properties": {
+                                                "id": {
+                                                    "type": "string",
+                                                    "x-stoplight": {
+                                                        "id": "con1wtm5iy2jn"
+                                                    }
+                                                },
+                                                "nis": {
+                                                    "type": "string",
+                                                    "x-stoplight": {
+                                                        "id": "2g9tvcwakdipr"
+                                                    }
+                                                },
+                                                "name": {
+                                                    "type": "string",
+                                                    "x-stoplight": {
+                                                        "id": "hh1bon3htj7xx"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "operationId": "put-admin-student-student_id",
+                "x-stoplight": {
+                    "id": "5tkgqsv1zlfgz"
+                },
+                "description": "Edit Student By Id",
+                "requestBody": {
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "type": "object",
+                                "required": [
+                                    "nis",
+                                    "name",
+                                    "gender",
+                                    "claass_id"
+                                ],
+                                "properties": {
+                                    "nis": {
+                                        "type": "string",
+                                        "x-stoplight": {
+                                            "id": "qlkdkxnco8m1o"
+                                        }
+                                    },
+                                    "name": {
+                                        "type": "string",
+                                        "x-stoplight": {
+                                            "id": "kzs9k87bvnfqc"
+                                        }
+                                    },
+                                    "gender": {
+                                        "x-stoplight": {
+                                            "id": "oahg360onrr8k"
+                                        },
+                                        "enum": ["male", "female"]
+                                    },
+                                    "claass_id": {
+                                        "type": "string",
+                                        "x-stoplight": {
+                                            "id": "25i3ymi0r893p"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete Student",
+                "tags": ["Admin"],
+                "responses": {
+                    "200": {
+                        "description": "Success Delete Student",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "x-stoplight": {
+                                                "id": "xw9ab5tob5l2h"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "operationId": "delete-admin-student-student_id",
+                "x-stoplight": {
+                    "id": "y7vc0xyn1k1wb"
+                },
+                "description": "Delete Student By Id"
+            }
+        },
+        "/admin/studentByClaass/{claass_id}": {
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "claass_id",
+                    "in": "path",
+                    "required": true,
+                    "description": "Claass Id"
+                }
+            ],
+            "get": {
+                "summary": "Get Students By Claass",
+                "tags": ["Admin"],
+                "responses": {
+                    "200": {
+                        "description": "Success Get Students",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "x-stoplight": {
+                                                "id": "qyofwg2wee6n3"
+                                            },
+                                            "items": {
+                                                "x-stoplight": {
+                                                    "id": "1mjnu9pap0g0i"
+                                                },
+                                                "type": "object",
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "string",
+                                                        "x-stoplight": {
+                                                            "id": "zo3v84fed55ck"
+                                                        }
+                                                    },
+                                                    "nis": {
+                                                        "type": "string",
+                                                        "x-stoplight": {
+                                                            "id": "j64w3mutvdw3t"
+                                                        }
+                                                    },
+                                                    "name": {
+                                                        "type": "string",
+                                                        "x-stoplight": {
+                                                            "id": "w88szk11a54v7"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "operationId": "get-admin-studentByClaass-claass_id",
+                "x-stoplight": {
+                    "id": "a3ltr457fdoc2"
+                },
+                "description": "Get Student By Claass"
+            }
+        },
+        "/admin/course": {
+            "get": {
+                "summary": "List Courses",
+                "tags": ["Admin"],
+                "responses": {
+                    "200": {
+                        "description": "Success Get Data",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "x-stoplight": {
+                                                "id": "aj7s3j5wt079c"
+                                            },
+                                            "items": {
+                                                "x-stoplight": {
+                                                    "id": "xwe32c8c1ojgk"
+                                                },
+                                                "type": "object",
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "string",
+                                                        "x-stoplight": {
+                                                            "id": "jqaelpzc05i6i"
+                                                        }
+                                                    },
+                                                    "name": {
+                                                        "type": "string",
+                                                        "x-stoplight": {
+                                                            "id": "cmixudunjzr0h"
+                                                        }
+                                                    },
+                                                    "claass": {
+                                                        "type": "string",
+                                                        "x-stoplight": {
+                                                            "id": "xo7qk957r5rd3"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "operationId": "get-admin-course",
+                "x-stoplight": {
+                    "id": "ja0c79tznmif4"
+                },
+                "description": "Get List Of Courses"
+            },
+            "post": {
+                "summary": "Create Course",
+                "tags": ["Admin"],
+                "responses": {
+                    "200": {
+                        "description": "Success Create New Course",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/Course"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "operationId": "post-admin-course",
+                "x-stoplight": {
+                    "id": "bnvpcun56jbnn"
+                },
+                "description": "Create New Course",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "required": [
+                                    "name",
+                                    "claass_id",
+                                    "teacher_id",
+                                    "semester_id"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "x-stoplight": {
+                                            "id": "xvi1g5mpj1m0a"
+                                        }
+                                    },
+                                    "claass_id": {
+                                        "type": "string",
+                                        "x-stoplight": {
+                                            "id": "nkelbpshiifg3"
+                                        }
+                                    },
+                                    "teacher_id": {
+                                        "type": "string",
+                                        "x-stoplight": {
+                                            "id": "rrcv1iez3gyob"
+                                        }
+                                    },
+                                    "semester_id": {
+                                        "type": "string",
+                                        "x-stoplight": {
+                                            "id": "hkqwjxjugvzze"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/admin/course/{course_id}": {
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "course_id",
+                    "in": "path",
+                    "required": true,
+                    "description": "Course Id"
+                }
+            ],
+            "get": {
+                "summary": "Get Course",
+                "tags": ["Admin"],
+                "responses": {
+                    "200": {
+                        "description": "Success Get Data",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/Course"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "operationId": "get-admin-course-course_id",
+                "x-stoplight": {
+                    "id": "nqdt7fbxh54k7"
+                },
+                "description": "Get Course Detail By Id"
+            },
+            "put": {
+                "summary": "Edit Course",
+                "tags": ["Admin"],
+                "responses": {
+                    "200": {
+                        "description": "Success Edit Data",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/Course"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "operationId": "put-admin-course-course_id",
+                "x-stoplight": {
+                    "id": "1hbf07r43i9fu"
+                },
+                "description": "Edit Course By Id",
+                "requestBody": {
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "type": "object",
+                                "required": [
+                                    "name",
+                                    "claass_id",
+                                    "teacher_id",
+                                    "semester_id"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "x-stoplight": {
+                                            "id": "396azxb6vx65q"
+                                        }
+                                    },
+                                    "claass_id": {
+                                        "type": "string",
+                                        "x-stoplight": {
+                                            "id": "swupa6u4uix5k"
+                                        }
+                                    },
+                                    "teacher_id": {
+                                        "type": "string",
+                                        "x-stoplight": {
+                                            "id": "mm1i3gaq57y7l"
+                                        }
+                                    },
+                                    "semester_id": {
+                                        "type": "string",
+                                        "x-stoplight": {
+                                            "id": "l8vzofgtd9glw"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete Course",
+                "tags": ["Admin"],
+                "responses": {
+                    "200": {
+                        "description": "Success Delete Data",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "x-stoplight": {
+                                                "id": "f5ggzlry30ayl"
+                                            },
+                                            "type": "boolean"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "operationId": "delete-admin-course-course_id",
+                "x-stoplight": {
+                    "id": "odl1qea5ae0vv"
+                },
+                "description": "Delete Course By Id"
+            }
+        },
+        "/admin/recap": {
+            "get": {
+                "summary": "Recap",
+                "tags": ["Admin"],
+                "responses": {
+                    "200": {
+                        "description": "Success Get Data",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "x-stoplight": {
+                                                "id": "p1v7kl7p5yiiz"
+                                            }
+                                        },
+                                        "course": {
+                                            "type": "string",
+                                            "x-stoplight": {
+                                                "id": "6bbcg9n4ne8p1"
+                                            }
+                                        },
+                                        "claass": {
+                                            "type": "string",
+                                            "x-stoplight": {
+                                                "id": "7alciaruzyq6n"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "operationId": "get-admin-recap",
+                "x-stoplight": {
+                    "id": "iah17qszowrou"
+                },
+                "description": "Get Course Recap",
+                "requestBody": {
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "claass_id": {
+                                        "type": "integer",
+                                        "x-stoplight": {
+                                            "id": "ui2vyw4k5aq2h"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/admin/major": {
+            "get": {
+                "summary": "Get List Majors",
+                "tags": ["Admin"],
+                "responses": {
+                    "200": {
+                        "description": "Success Get Data",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "x-stoplight": {
+                                                "id": "84fy8eqigx0fz"
+                                            },
+                                            "items": {
+                                                "x-stoplight": {
+                                                    "id": "6a6yz2qeci281"
+                                                },
+                                                "type": "object",
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "string",
+                                                        "x-stoplight": {
+                                                            "id": "fwxk6gba7e1gl"
+                                                        }
+                                                    },
+                                                    "name": {
+                                                        "type": "string",
+                                                        "x-stoplight": {
+                                                            "id": "3v7wjy07pez34"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "operationId": "get-admin-major",
+                "x-stoplight": {
+                    "id": "j99p7pa2ixi95"
+                },
+                "description": "Get List Of Majors"
+            }
+        },
+        "/admin/aboutUs": {
+            "get": {
+                "summary": "Get List About Us",
+                "tags": ["Admin"],
+                "responses": {
+                    "200": {
+                        "description": "Success Get Data",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "x-stoplight": {
+                                                "id": "2jf76lfm4oft1"
+                                            },
+                                            "items": {
+                                                "$ref": "#/components/schemas/AboutUs"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "operationId": "get-admin-aboutUs",
+                "x-stoplight": {
+                    "id": "u4lgok4mzm1ev"
+                },
+                "description": "Get List Of About Us"
+            },
+            "post": {
+                "summary": "Create About Us",
+                "tags": ["Admin"],
+                "responses": {
+                    "200": {
+                        "description": "Success Create New About Us",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/AboutUs"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "operationId": "post-admin-aboutUs",
+                "x-stoplight": {
+                    "id": "e5wwmudr5v6xi"
+                },
+                "description": "Create New About Us",
+                "requestBody": {
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "x-stoplight": {
+                                            "id": "z2ty7oakfy6g2"
+                                        }
+                                    },
+                                    "position": {
+                                        "type": "string",
+                                        "x-stoplight": {
+                                            "id": "8v9elb5j0hs9x"
+                                        }
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "x-stoplight": {
+                                            "id": "f8o87mn8wxluz"
+                                        },
+                                        "format": "email"
+                                    },
+                                    "phone": {
+                                        "type": "string",
+                                        "x-stoplight": {
+                                            "id": "d8ynn2bs2cmp4"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/admin/aboutUs/{aboutUs_id}": {
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "aboutUs_id",
+                    "in": "path",
+                    "required": true,
+                    "description": "About Us Id"
+                }
+            ],
+            "get": {
+                "summary": "Get About Us",
+                "tags": ["Admin"],
+                "responses": {
+                    "200": {
+                        "description": "Success Get  Data",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/AboutUs"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "operationId": "get-admin-aboutUs-aboutUs_id",
+                "x-stoplight": {
+                    "id": "7qq7rgpjoahzc"
+                },
+                "description": "Get About Us By Id"
+            },
+            "put": {
+                "summary": "Edit About Us",
+                "tags": ["Admin"],
+                "responses": {
+                    "200": {
+                        "description": "Success Edit Data",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/AboutUs"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "operationId": "put-admin-aboutUs-aboutUs_id",
+                "x-stoplight": {
+                    "id": "tcc6dfaqwdrc2"
+                },
+                "description": "Edit About Us By Id",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "x-stoplight": {
+                                            "id": "e2hea1xd7hrb6"
+                                        }
+                                    },
+                                    "position": {
+                                        "type": "string",
+                                        "x-stoplight": {
+                                            "id": "4doeiz7q9m6u4"
+                                        }
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "x-stoplight": {
+                                            "id": "z2bt7w7gjkdwr"
+                                        },
+                                        "format": "email"
+                                    },
+                                    "phone": {
+                                        "type": "string",
+                                        "x-stoplight": {
+                                            "id": "yn0nuo51l6oz7"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete About Us",
+                "tags": ["Admin"],
+                "responses": {
+                    "200": {
+                        "description": "Success Delete Data",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "x-stoplight": {
+                                                "id": "t5p54zilagfu2"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "operationId": "delete-admin-aboutUs-aboutUs_id",
+                "x-stoplight": {
+                    "id": "7b5wljsqgabi1"
+                },
+                "description": "Delete About Us By Id"
+            }
+        },
+        "/recap/{course_id}": {
+            "parameters": [
+                {
+                    "schema": {
+                        "type": "string"
+                    },
+                    "name": "course_id",
+                    "in": "path",
+                    "required": true,
+                    "description": "Course Id"
+                }
+            ],
+            "get": {
+                "summary": "Get Course Recap",
+                "tags": ["Admin"],
+                "responses": {
+                    "200": {
+                        "description": "Success Get Data",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "object",
+                                            "x-stoplight": {
+                                                "id": "30b4ttxr182jo"
+                                            },
+                                            "properties": {
+                                                "course": {
+                                                    "$ref": "#/components/schemas/Course"
+                                                },
+                                                "students_recap": {
+                                                    "type": "array",
+                                                    "x-stoplight": {
+                                                        "id": "gexjzko9167gd"
+                                                    },
+                                                    "items": {
+                                                        "x-stoplight": {
+                                                            "id": "9fb4zzgr7zart"
+                                                        },
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "name": {
+                                                                "type": "string",
+                                                                "x-stoplight": {
+                                                                    "id": "k4c9btrkvhtjr"
+                                                                }
+                                                            },
+                                                            "nis": {
+                                                                "type": "string",
+                                                                "x-stoplight": {
+                                                                    "id": "9e58gvn0sgvfx"
+                                                                }
+                                                            },
+                                                            "gender": {
+                                                                "x-stoplight": {
+                                                                    "id": "vhytv96kk0ed0"
+                                                                },
+                                                                "enum": [
+                                                                    "male",
+                                                                    "female"
+                                                                ]
+                                                            },
+                                                            "h_count": {
+                                                                "type": "integer",
+                                                                "x-stoplight": {
+                                                                    "id": "e1chg3rnr3axw"
+                                                                }
+                                                            },
+                                                            "s_count": {
+                                                                "type": "integer",
+                                                                "x-stoplight": {
+                                                                    "id": "1p7n54dxa6klh"
+                                                                }
+                                                            },
+                                                            "i_count": {
+                                                                "type": "integer",
+                                                                "x-stoplight": {
+                                                                    "id": "hlj3kogu4en48"
+                                                                }
+                                                            },
+                                                            "a_count": {
+                                                                "type": "integer",
+                                                                "x-stoplight": {
+                                                                    "id": "wocqqeyll3ffz"
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "operationId": "get-recap-course_id",
+                "x-stoplight": {
+                    "id": "satfiejxj1m57"
+                },
+                "description": "Get Course Recap"
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Attendance": {
+                "title": "Attendance",
+                "x-stoplight": {
+                    "id": "c3of9a0vxoo6p"
+                },
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "x-stoplight": {
+                            "id": "5jpfpwljgmnbw"
+                        }
+                    },
+                    "title": {
+                        "type": "string",
+                        "x-stoplight": {
+                            "id": "sp6i6zoaqmd9m"
+                        }
+                    },
+                    "datetime": {
+                        "type": "string",
+                        "x-stoplight": {
+                            "id": "93yfrs3ex03bn"
+                        },
+                        "format": "date-time"
+                    },
+                    "course_id": {
+                        "type": "integer",
+                        "x-stoplight": {
+                            "id": "pc82h4b4kkxay"
+                        }
+                    },
+                    "course": {
+                        "type": "string",
+                        "x-stoplight": {
+                            "id": "tspu9mehrzar7"
+                        }
+                    },
+                    "is_filled": {
+                        "type": "boolean",
+                        "x-stoplight": {
+                            "id": "zejk2bweadk49"
+                        }
+                    }
+                }
+            },
+            "Semester": {
+                "title": "Semester",
+                "x-stoplight": {
+                    "id": "mtmd0czory6n7"
+                },
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "x-stoplight": {
+                            "id": "b66bj18tt6qxt"
+                        }
+                    },
+                    "start_year": {
+                        "type": "integer",
+                        "x-stoplight": {
+                            "id": "g8inpck551h5z"
+                        }
+                    },
+                    "end_year": {
+                        "type": "integer",
+                        "x-stoplight": {
+                            "id": "7if5okanx7kim"
+                        }
+                    },
+                    "odd_even": {
+                        "type": "boolean",
+                        "x-stoplight": {
+                            "id": "sbrkxhfo2ul4d"
+                        }
+                    },
+                    "is_active": {
+                        "type": "boolean",
+                        "x-stoplight": {
+                            "id": "rinlh6t85tcxg"
+                        }
+                    }
+                }
+            },
+            "Claass": {
+                "title": "Claass",
+                "x-stoplight": {
+                    "id": "yu4kiwaabysoj"
+                },
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "x-stoplight": {
+                            "id": "xt05ayaf3prtt"
+                        }
+                    },
+                    "major_id": {
+                        "type": "integer",
+                        "x-stoplight": {
+                            "id": "jiegsm8qnczej"
+                        }
+                    },
+                    "major": {
+                        "type": "string",
+                        "x-stoplight": {
+                            "id": "v040psy9bz556"
+                        }
+                    },
+                    "level": {
+                        "type": "integer",
+                        "x-stoplight": {
+                            "id": "f4imhtomrlkib"
+                        }
+                    },
+                    "name": {
+                        "type": "string",
+                        "x-stoplight": {
+                            "id": "l5yfgic4ugjiz"
+                        }
+                    }
+                }
+            },
+            "Teacher": {
+                "title": "Teacher",
+                "x-stoplight": {
+                    "id": "hcm2hatq3d8p4"
+                },
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "x-stoplight": {
+                            "id": "t2asfizsii561"
+                        }
+                    },
+                    "username": {
+                        "type": "string",
+                        "x-stoplight": {
+                            "id": "hbq4irbi7pd7d"
+                        }
+                    },
+                    "email": {
+                        "type": "string",
+                        "x-stoplight": {
+                            "id": "iwoleltsl55yw"
+                        },
+                        "format": "email"
+                    },
+                    "name": {
+                        "type": "string",
+                        "x-stoplight": {
+                            "id": "8cie1911xqr1h"
+                        }
+                    },
+                    "phone": {
+                        "type": "string",
+                        "x-stoplight": {
+                            "id": "lziyo15zt5y18"
+                        }
+                    },
+                    "gender": {
+                        "x-stoplight": {
+                            "id": "xvkx41xlgutwd"
+                        },
+                        "enum": ["male", "female"]
+                    }
+                }
+            },
+            "Student": {
+                "title": "Student",
+                "x-stoplight": {
+                    "id": "46tv7c2k4o12a"
+                },
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "x-stoplight": {
+                            "id": "uddksjlnq8u51"
+                        }
+                    },
+                    "nis": {
+                        "type": "string",
+                        "x-stoplight": {
+                            "id": "2jba1u0xxx1d4"
+                        }
+                    },
+                    "name": {
+                        "type": "string",
+                        "x-stoplight": {
+                            "id": "xvmie029poxbl"
+                        }
+                    },
+                    "gender": {
+                        "x-stoplight": {
+                            "id": "3zy1xy3ujhuwb"
+                        },
+                        "enum": ["male", "female"]
+                    },
+                    "claass_id": {
+                        "type": "string",
+                        "x-stoplight": {
+                            "id": "wkw00t1mxmn6x"
+                        }
+                    },
+                    "claass_name": {
+                        "type": "string",
+                        "x-stoplight": {
+                            "id": "d9mj2p8zn1xl2"
+                        }
+                    }
+                }
+            },
+            "Course": {
+                "title": "Course",
+                "x-stoplight": {
+                    "id": "o0hhylh04ktvc"
+                },
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "x-stoplight": {
+                            "id": "5rzthw1dxgsyz"
+                        }
+                    },
+                    "name": {
+                        "type": "string",
+                        "x-stoplight": {
+                            "id": "1vfcx4pyk8aau"
+                        }
+                    },
+                    "claass": {
+                        "type": "string",
+                        "x-stoplight": {
+                            "id": "vsbris78nf7d9"
+                        }
+                    },
+                    "claass_id": {
+                        "type": "string",
+                        "x-stoplight": {
+                            "id": "cjkn5fbi7ghoh"
+                        }
+                    },
+                    "teacher": {
+                        "type": "string",
+                        "x-stoplight": {
+                            "id": "rzlzo5kj8rnea"
+                        }
+                    },
+                    "teacher_id": {
+                        "type": "string",
+                        "x-stoplight": {
+                            "id": "smql2ho91l0g9"
+                        }
+                    },
+                    "semester": {
+                        "type": "string",
+                        "x-stoplight": {
+                            "id": "il5d96uun1niz"
+                        }
+                    },
+                    "semester_id": {
+                        "type": "string",
+                        "x-stoplight": {
+                            "id": "dnnvoodaocr1m"
+                        }
+                    },
+                    "student_count": {
+                        "type": "integer",
+                        "x-stoplight": {
+                            "id": "pl6yw26kiy3v0"
+                        }
+                    },
+                    "attendance_count": {
+                        "type": "integer",
+                        "x-stoplight": {
+                            "id": "9qfg8995qyd81"
+                        }
+                    }
+                }
+            },
+            "AboutUs": {
+                "title": "AboutUs",
+                "x-stoplight": {
+                    "id": "mk39rxzjck1o6"
+                },
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "x-stoplight": {
+                            "id": "vu77eaxx44oak"
+                        }
+                    },
+                    "name": {
+                        "type": "string",
+                        "x-stoplight": {
+                            "id": "xumumymj2iiub"
+                        }
+                    },
+                    "position": {
+                        "type": "string",
+                        "x-stoplight": {
+                            "id": "jw57n3tlulsf2"
+                        }
+                    },
+                    "email": {
+                        "type": "string",
+                        "x-stoplight": {
+                            "id": "4x7zkpwiw7xxy"
+                        },
+                        "format": "email"
+                    },
+                    "phone": {
+                        "type": "string",
+                        "x-stoplight": {
+                            "id": "1420zvsvgatgq"
+                        }
+                    }
+                }
+            }
+        },
+        "securitySchemes": {
+            "token": {
+                "type": "http",
+                "scheme": "bearer"
+            }
+        }
+    }
+}
