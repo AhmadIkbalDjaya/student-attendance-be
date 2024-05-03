@@ -15,13 +15,14 @@ class StudentAttendanceResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        $student_attendance_id = StudentAttendance::selectRaw('id')->where("attendance_id", $this->pivot->attendance_id)->where('student_id', $this->id)->value('id');
+        $student_attendance = StudentAttendance::select(['id', 'image'])->where("attendance_id", $this->pivot->attendance_id)->where('student_id', $this->id)->first();
         return [
-            "id" => $student_attendance_id,
+            "id" => $student_attendance->id,
             "student_name" => $this->name,
             "nis" => $this->nis,
             "gender" => $this->gender,
             "status_id" => $this->pivot->status_id,
+            "image" => $student_attendance->image ? url("storage/$student_attendance->image") : null,
         ];
     }
 }

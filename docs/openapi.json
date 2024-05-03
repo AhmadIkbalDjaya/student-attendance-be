@@ -1125,6 +1125,7 @@
                         "multipart/form-data": {
                             "schema": {
                                 "type": "object",
+                                "required": ["ids", "status_ids", "images"],
                                 "properties": {
                                     "ids": {
                                         "type": "array",
@@ -1148,6 +1149,20 @@
                                                 "id": "0fnh2y26sn8yh"
                                             },
                                             "type": "integer"
+                                        }
+                                    },
+                                    "images": {
+                                        "anyOf": [
+                                            {
+                                                "type": "string"
+                                            },
+                                            {
+                                                "type": "object"
+                                            }
+                                        ],
+                                        "default": "string",
+                                        "x-stoplight": {
+                                            "id": "zl0243qjiqwx7"
                                         }
                                     }
                                 }
