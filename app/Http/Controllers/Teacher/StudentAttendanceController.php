@@ -35,12 +35,23 @@ class StudentAttendanceController extends Controller
             "ids.*" => "exists:student_attendances,id",
             "status_ids" => "required|array|size:" . count($request->ids),
             "status_ids.*" => "exists:attendance_statuses,id",
+            "images" => "required|array|size:" . count($request->ids),
+            // "images.*" => "nullable|image|mimes:jpeg,png,jpg|max:2048",
+            // "images.*" => "nullable|string",
         ]);
+        foreach ($request->images as $index => $image) {
+            if (gettype($image) == "object") {
+                $validated["images"][$index] = $image->storePublicly("student_attendance", "public");
+            } else {
+                $validated["images"][$index] = null;
+            }
+        }
         try {
             DB::transaction(function () use ($attendance, $validated) {
                 foreach ($validated['ids'] as $key => $student_attendance) {
                     StudentAttendance::where('id', $student_attendance)->update([
-                        "status_id" => $validated['status_ids'][$key]
+                        "status_id" => $validated['status_ids'][$key],
+                        "image" => $validated['images'][$key],
                     ]);
                 }
                 $attendance->update([
