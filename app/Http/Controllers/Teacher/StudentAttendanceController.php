@@ -48,6 +48,7 @@ class StudentAttendanceController extends Controller
                     $path = explode("storage/", $validated["images"][$index]);
                     $validated["images"][$index] = $path[1];
                 }
+                $validated["images"][$index] = null;
             } else {
                 $validated["images"][$index] = null;
             }
