@@ -43,13 +43,14 @@ class StudentAttendanceController extends Controller
             if (gettype($image) == "object") {
                 $validated["images"][$index] = $image->storePublicly("student_attendance", "public");
             } 
-            if (gettype($image) == "string") {
+            elseif (gettype($image) == "string") {
                 if ($validated["images"][$index] != "null") {
                     $path = explode("storage/", $validated["images"][$index]);
                     $validated["images"][$index] = $path[1];
                 }
+            } else {
+                $validated["images"][$index] = null;
             }
-            $validated["images"][$index] = null;
         }
         try {
             DB::transaction(function () use ($attendance, $validated) {
