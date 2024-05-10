@@ -42,6 +42,14 @@ class StudentAttendanceController extends Controller
         foreach ($request->images as $index => $image) {
             if (gettype($image) == "object") {
                 $validated["images"][$index] = $image->storePublicly("student_attendance", "public");
+            } 
+            elseif (gettype($image) == "string") {
+                if ($validated["images"][$index] != "null") {
+                    $path = explode("storage/", $validated["images"][$index]);
+                    $validated["images"][$index] = $path[1];
+                }else{
+                    $validated["images"][$index] = null;
+                }
             } else {
                 $validated["images"][$index] = null;
             }

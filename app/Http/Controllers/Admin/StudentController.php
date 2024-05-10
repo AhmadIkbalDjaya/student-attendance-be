@@ -11,17 +11,17 @@ use App\Http\Resources\StudentDetailResource;
 
 class StudentController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $students = Student::latest()->get();
-        return response()->json([
-            "data" => StudentResource::collection($students),
-        ], 200);
-    }
-
-    public function studentByClaass(Claass $claass)
-    {
-        $students = Student::where("claass_id", $claass->id)->latest()->get();
+        $claass_id = $request->input('claass_id');
+        $request->validate([
+            "claass_id" => "nullable|exists:claasses,id"
+        ]);
+        if ($claass_id) {
+            $students = Student::where('claass_id', $claass_id)->latest()->get();
+        } else {
+            $students = Student::latest()->get();
+        }
         return response()->json([
             "data" => StudentResource::collection($students),
         ], 200);

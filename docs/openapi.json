@@ -27,6 +27,10 @@
             "description": "Live"
         },
         {
+            "url": "https://mobile.attendancedev.pariwang.com/api",
+            "description": "Dev"
+        },
+        {
             "url": "https://mobile.attendance.sman17gowa.com/api",
             "description": "Old Live"
         }
@@ -2204,7 +2208,17 @@
                 "x-stoplight": {
                     "id": "2u931o5f0jvqt"
                 },
-                "description": "Get Student By Id"
+                "description": "Get Student By Id",
+                "parameters": [
+                    {
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query",
+                        "name": "claass_id",
+                        "description": "Get student by claassId"
+                    }
+                ]
             },
             "put": {
                 "summary": "Edit Student",
@@ -2324,74 +2338,6 @@
                     "id": "y7vc0xyn1k1wb"
                 },
                 "description": "Delete Student By Id"
-            }
-        },
-        "/admin/studentByClaass/{claass_id}": {
-            "parameters": [
-                {
-                    "schema": {
-                        "type": "string"
-                    },
-                    "name": "claass_id",
-                    "in": "path",
-                    "required": true,
-                    "description": "Claass Id"
-                }
-            ],
-            "get": {
-                "summary": "Get Students By Claass",
-                "tags": ["Admin"],
-                "responses": {
-                    "200": {
-                        "description": "Success Get Students",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "data": {
-                                            "type": "array",
-                                            "x-stoplight": {
-                                                "id": "qyofwg2wee6n3"
-                                            },
-                                            "items": {
-                                                "x-stoplight": {
-                                                    "id": "1mjnu9pap0g0i"
-                                                },
-                                                "type": "object",
-                                                "properties": {
-                                                    "id": {
-                                                        "type": "string",
-                                                        "x-stoplight": {
-                                                            "id": "zo3v84fed55ck"
-                                                        }
-                                                    },
-                                                    "nis": {
-                                                        "type": "string",
-                                                        "x-stoplight": {
-                                                            "id": "j64w3mutvdw3t"
-                                                        }
-                                                    },
-                                                    "name": {
-                                                        "type": "string",
-                                                        "x-stoplight": {
-                                                            "id": "w88szk11a54v7"
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                },
-                "operationId": "get-admin-studentByClaass-claass_id",
-                "x-stoplight": {
-                    "id": "a3ltr457fdoc2"
-                },
-                "description": "Get Student By Claass"
             }
         },
         "/admin/course": {

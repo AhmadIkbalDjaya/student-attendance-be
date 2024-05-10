@@ -40,7 +40,6 @@ Route::prefix("admin")->group(function () {
         Route::resource('teacher', TeacherController::class)->except(["edit", "create"]);
         Route::post('teacher/setPass/{teacher}', [TeacherController::class, 'setPass']);
         Route::resource('student', StudentController::class)->except(["edit", "create"]);
-        Route::get('studentByClaass/{claass}', [StudentController::class, 'studentByClaass']);
         Route::resource('course', CourseController::class)->except(["edit", "create"]);
         Route::get('recap', [AdminRecapController::class, 'index']);
         Route::resource('aboutUs', AboutUsController::class)->except(['edit', 'create'])->parameters(["aboutUs" => "aboutUs"]);
