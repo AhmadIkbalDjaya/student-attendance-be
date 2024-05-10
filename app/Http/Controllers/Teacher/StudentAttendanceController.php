@@ -46,7 +46,6 @@ class StudentAttendanceController extends Controller
             elseif (gettype($image) == "string") {
                 if ($validated["images"][$index] != "null") {
                     $path = explode("storage/", $validated["images"][$index]);
-                    dump($path[1]);
                     $validated["images"][$index] = $path[1];
                 }else{
                     $validated["images"][$index] = null;
@@ -55,7 +54,6 @@ class StudentAttendanceController extends Controller
                 $validated["images"][$index] = null;
             }
         }
-        dd();
         try {
             DB::transaction(function () use ($attendance, $validated) {
                 foreach ($validated['ids'] as $key => $student_attendance) {
